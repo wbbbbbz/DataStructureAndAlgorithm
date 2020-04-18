@@ -1,19 +1,29 @@
+import java.util.Random;
+
 import datastructure.Array;
 import datastructure.ArrayQueue;
 import datastructure.ArrayStack;
 import datastructure.LoopQueue;
+import datastructure.Queue;
 
 public class Main {
 
     public static void main(String[] args) {
-        arrayTest();
-        System.out.println("--------------------------------------");
-        stackTest();
-        System.out.println("--------------------------------------");
-        queueTest();
-        System.out.println("--------------------------------------");
-        loopQueueTest();
-        System.out.println("--------------------------------------");
+        // arrayTest();
+        // System.out.println("--------------------------------------");
+        // stackTest();
+        // System.out.println("--------------------------------------");
+        // queueTest();
+        // System.out.println("--------------------------------------");
+        // loopQueueTest();
+        // System.out.println("--------------------------------------");
+        Queue<Integer> arrayQueue = new ArrayQueue<>();
+        Queue<Integer> loopQueue = new LoopQueue<>();
+        int opCount = 100000;
+        double arrayQueueTime = testQueue(arrayQueue, opCount);
+        double loopQueueTime = testQueue(loopQueue, opCount);
+        System.out.println("arrayQueueTime: " + arrayQueueTime + " s");
+        System.out.println("loopQueueTime: " + loopQueueTime + " s");
     }
 
     public static void arrayTest() {
@@ -40,7 +50,6 @@ public class Main {
         System.out.println(intArray);
     }
 
-
     public static void stackTest() {
         ArrayStack<Integer> intStack = new ArrayStack<>(20);
         for (int i = 0; i < 10; i++) {
@@ -52,7 +61,6 @@ public class Main {
             }
         }
     }
-
 
     public static void queueTest() {
         ArrayQueue<Integer> intQueue = new ArrayQueue<>(10);
@@ -66,7 +74,6 @@ public class Main {
         }
     }
 
-    
     public static void loopQueueTest() {
         LoopQueue<Integer> intQueue = new LoopQueue<>(10);
         for (int i = 0; i < 10; i++) {
@@ -79,5 +86,19 @@ public class Main {
         }
     }
 
+    // 测试使用q运行opCount个入队与出队所需的时间。单位为秒
+    public static double testQueue(Queue<Integer> q, int opCount) {
+
+        Random random = new Random();
+        long startTime = System.nanoTime();
+        for (int i = 0; i < opCount; i++)
+            q.enqueue(random.nextInt(Integer.MAX_VALUE));
+        for (int i = 0; i < opCount; i++)
+            q.dequeue();
+
+        long endTime = System.nanoTime();
+
+        return (endTime - startTime) / 1000000000.0;
+    }
 
 }
