@@ -4,3 +4,5 @@
 - [第2章 不要小瞧数组](Chapter2.md)
 - [第3章 栈和队列](Chapter3.md)
 - [第4章  最基础的动态数据结构：链表](Chapter4.md)
+- [第5章  链表和递归](Chapter5.md)
+- [第6章 二分搜索树](Chapter6.md)
