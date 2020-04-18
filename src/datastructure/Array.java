@@ -195,17 +195,24 @@ public class Array<E> {
         this.data = newData;
     }
 
+    public E getLast(){
+        return get(size - 1);
+    }
+
+    public E getFirst(){
+        return get(0);
+    }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
         output.append(String.format("Array: size = %d, capacity = %d\n", size, data.length));
         output.append("[");
         for (int i = 0; i < size; i++) {
-            if (i == size - 1){
-                output.append(data[i]);
-                break;
+            output.append(data[i]);
+            if (i != size - 1) {
+                output.append(", ");
             }
-            output.append(data[i] + ", ");
         }
         output.append("]");
         return output.toString();
