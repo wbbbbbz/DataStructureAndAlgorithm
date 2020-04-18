@@ -1,7 +1,22 @@
-# 第3章 栈和队列
+# 第 3 章 栈和队列
 
 - 用户不应该可以看见栈中间的要素！
 - 栈顶元素反映了在嵌套的层次关系中，**最近的**需要匹配的元素
-- LeetCode可以在Solution里面直接加入一个main函数进行调试！而且可以提交，因为LeetCode不看main函数里面的内容。
-- 并且LeetCode可以通过内部类写入多个类！
-- 队列的队首是Front，应该是数组的最开头0位！
+- LeetCode 可以在 Solution 里面直接加入一个 main 函数进行调试！而且可以提交，因为 LeetCode 不看 main 函数里面的内容。
+- 并且 LeetCode 可以通过内部类写入多个类！
+- 队列的队首是 Front，应该是数组的最开头 0 位！
+- 循环队列可以很好的避免出队时造成的 O(n)时间复杂度
+  - 循环队列底层不一定要用动态数组，可以用静态数组
+  - 循环队列是通过维护队首和队尾的 pointer 来记录队列的！
+  - front == tail 队列为空，**(tail + 1) % c** == front 队列为满
+  - 必须这样有意识的浪费一个空间，否则上面两个条件无法区分
+  - 因为要浪费一个空间，所以创建队列的时候要 capacity + 1!而返回 capacity 的时候要-1
+  - 循环是指通过%(capacity + 1)来使用剩余的空间
+  - 所有 front 和 tail 的循环都要进行求余操作！
+  - 循环队列的 size 的维护需要小心！虽然通过 front 和 tail 可求，但是通过一个变量 size 更方便！
+  - (tail + 1) % data.length == front 和 getSize() == getCapacity()是否一样？
+  - 扩展的时候通过这个：newData[i] = data[(i + front) % data.length];
+  - 循环也可以这样：for(int i = front ; i != tail ; i = (i + 1) % data.length)。因为tail可能小于front，所以只能小于，并且循环！
+  - 因为每一个元素都是从front开始计算偏移，然后循环就通过求余解决！
+  - 扩展的时候一定是从0开始扩展！这样方便维护
+- 不要想得太复杂！
