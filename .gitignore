@@ -2,3 +2,6 @@
 *.class
 
 .classpath
+a-tale-of-two-cities.txt
+pride-and-prejudice.txt
+src/datastructure/FileOperation.java
