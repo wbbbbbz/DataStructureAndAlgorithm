@@ -1,7 +1,5 @@
 package datastructure;
 
-import java.security.spec.ECFieldFp;
-import java.util.ArrayList;
 
 /**
  * 二次封装java的数组类，使原有的静态数组封装为动态数组 需要支持增删改查(CRUD) 使用capacity代表一开始数组的大小

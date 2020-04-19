@@ -114,7 +114,7 @@ public class LinkedList<E> {
         // }
         // return false;
         while (node != null) {
-            if (node.e == e)
+            if (e.equals(node.e))
                 return true;
             node = node.next;
         }
@@ -143,6 +143,20 @@ public class LinkedList<E> {
 
     public E removeLast() {
         return remove(size - 1);
+    }
+
+    // 删除链表中特定的元素
+    public void removeElement(E e) {
+        Node prev = dummyHead;
+        while (prev != null && prev.next != null) {
+            if (e.equals(prev.next.e)) {
+                Node delNode = prev.next;
+                prev.next = delNode.next;
+                delNode.next = null;
+                size--;
+                return;
+            }
+        }
     }
 
     @Override
