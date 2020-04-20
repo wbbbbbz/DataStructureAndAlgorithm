@@ -39,12 +39,11 @@ public class BinarySearchTreeTest {
         // nums.addLast(bst.removeMin());
         // System.out.println(nums);
 
-        for (int i = 0; i < 1000; i++) {
-            bst.add(i);
+        int[] nums = { 5, 3, 6, 8, 4, 2 };
+        for (int num : nums) {
+            bst.add(num);
         }
-        for (int i = 0; i < 1000; i++) {
-            bst.remove(i);
-        }
+        bst.remove(5);
         System.out.println(bst);
 
     }

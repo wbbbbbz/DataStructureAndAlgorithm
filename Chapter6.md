@@ -38,16 +38,22 @@
     - 删除只有左子树，只有右子树的都不麻烦，直接用子树代替本身即可（叶子节点也可以这么理解）
     - 删除左右都有孩子节点的时候，需要在右子树中找出后继，然后把后继删除，取出，连接到现有的左右节点，然后返回即可
     - d = find() -> s = min(d.right) -> s.right = delMin(d.right) -> s.left = d.left
-    - 不递归的话没办法把节点连到父节点上？
+      - 上面的 min 和 delMin 两个的宏观意义不一样
+      - min 返回的就是最小节点
+      - 而 delMin 返回的是删除完 min 之后的根节点
+  - 删除需要借用的方法：remove(E e), remove(Node node, E e), removeMin(Node node), getMinimumNode(Node node)
+    不递归的话没办法把节点连到父节点上？
     - 前驱或者后继都是可以的！
+
 - 二分搜索树有序。所以可以有下列操作：
-   - minimum, maximum
-   - successor, predecessor
-   - floor, ceil（找某一个元素的比它小的最大和比它大的最小）
-   - rank, select（排名和排名对应的元素）
-   - 维护每一个节点的size!（这样的话rank和select会很简单！）
-   - 还可以维护一个depth！
-   - 重复元素可以维护一个count！
+
+  - minimum, maximum
+  - successor, predecessor
+  - floor, ceil（找某一个元素的比它小的最大和比它大的最小）
+  - rank, select（排名和排名对应的元素）
+  - 维护每一个节点的 size!（这样的话 rank 和 select 会很简单！）
+  - 还可以维护一个 depth！
+  - 重复元素可以维护一个 count！
 
 - 本章中的树递归很多都是先设计用户用的方法，然后通过 private 方法，返回 node 进行递归处理。这个方法返回的 node 是让父节点进行连接的！所以最后要 root = xxx();
 - 删除结点每次都要想想 size 的维护和原有 node 的 null（断连接！）
