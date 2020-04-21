@@ -1,6 +1,5 @@
 package datastructure;
 
-
 /**
  * 二次封装java的数组类，使原有的静态数组封装为动态数组 需要支持增删改查(CRUD) 使用capacity代表一开始数组的大小
  * 使用size代表实际拥有的数据多少（等于第一个空的索引） 支持的操作：增（头，尾，特定位置），删，改（特定位置），查（查询索引），保持大小变量，
@@ -29,14 +28,12 @@ public class Array<E> {
         this(10);
     }
 
-    public Array(E[] data) {
-        this.data = data;
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] == null) {
-                this.size = i;
-            }
+    public Array(E[] array) {
+        this.data = (E[]) new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            data[i] = array[i];
         }
-        this.size = data.length;
+        this.size = array.length;
     }
 
     // 获取数组中的元素个数
@@ -52,6 +49,16 @@ public class Array<E> {
     // 判断数组是否为空
     public boolean isEmpty() {
         return this.size == 0;
+    }
+
+    // 数组元素互换
+    public void swap(int i, int j) {
+        if (i < 0 || i >= size || j < 0 || j >= size)
+            throw new IllegalArgumentException("Index is out of bound");
+        E eI = data[i];
+        data[i] = data[j];
+        data[j] = data[i];
+        eI = null;
     }
 
     // 往数组末尾添加元素
@@ -150,7 +157,7 @@ public class Array<E> {
         size--;
 
         // 防止复杂度震荡的Lazy缩容策略
-        if (size < data.length / 4 && data.length / 2 != 0){
+        if (size < data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
         data[size] = null; // loitering objects != memory leak
@@ -185,7 +192,7 @@ public class Array<E> {
     }
 
     // 调整数组大小
-    private void resize(int capacity){
+    private void resize(int capacity) {
         E[] newData = (E[]) new Object[capacity];
         for (int i = 0; i < size; i++) {
             newData[i] = data[i];
@@ -193,11 +200,11 @@ public class Array<E> {
         this.data = newData;
     }
 
-    public E getLast(){
+    public E getLast() {
         return get(size - 1);
     }
 
-    public E getFirst(){
+    public E getFirst() {
         return get(0);
     }
 
