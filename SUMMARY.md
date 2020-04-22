@@ -9,3 +9,4 @@
 - [第 7 章 集合和映射](notes/datastructure/Chapter7.md)
 - [第 8 章 优先队列和堆](notes/datastructure/Chapter8.md)
 - [第 9 章 线段树](notes/datastructure/Chapter9.md)
+- [第 10 章 Trie](notes/datastructure/Chapter10.md)
