@@ -8,3 +8,4 @@
 - [第 6 章 二分搜索树](notes/datastructure/Chapter6.md)
 - [第 7 章 集合和映射](notes/datastructure/Chapter7.md)
 - [第 8 章 优先队列和堆](notes/datastructure/Chapter8.md)
+- [第 9 章 线段树](notes/datastructure/Chapter9.md)
