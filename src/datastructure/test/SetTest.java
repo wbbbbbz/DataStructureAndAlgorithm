@@ -11,11 +11,17 @@ public class SetTest {
 
         Set<String> bstSet = new BSTSet<>();
         Set<String> linkedListSet = new LinkedListSet<>();
+        Set<String> avlSet = new AVLSet<>();
+
         String fileName = "a-tale-of-two-cities.txt";
         double bstSetTime = testSet(bstSet, fileName);
         double linkedListSetTime = testSet(linkedListSet, fileName);
-        System.out.println("bstSetTime: " + bstSetTime + " s");
-        System.out.println("linkedListSetTime: " + linkedListSetTime + " s");
+        double avlSetTime = testSet(avlSet, fileName);
+
+        System.out.println("bstSetTime: " + bstSetTime + " s\n");
+        System.out.println("linkedListSetTime: " + linkedListSetTime + " s\n");
+        System.out.println("avlSetTime: " + avlSetTime + " s\n");
+
     }
 
     public static void setTest() {
@@ -56,7 +62,7 @@ public class SetTest {
 
         System.out.println(fileName);
         System.out.println("Total words: " + words.size());
-        System.out.println("Total different words: " + set.getSize());
+        System.out.println("Total different words: " + set.getSize() + "\n");
         return (endTime - startTime) / 1000000000.0;
     }
 

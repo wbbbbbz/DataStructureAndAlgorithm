@@ -2,6 +2,7 @@ package datastructure.test;
 
 import java.util.ArrayList;
 
+import datastructure.AVLMap;
 import datastructure.BSTMap;
 import datastructure.FileOperation;
 import datastructure.LinkedListMap;
@@ -15,11 +16,14 @@ public class MapTest {
 
         Map<String, Integer> bstMap = new BSTMap<>();
         Map<String, Integer> linkedListMap = new LinkedListMap<>();
-        String fileName = "a-tale-of-two-cities.txt";
+        Map<String, Integer> avlMap = new AVLMap<>();
+        String fileName = "pride-and-prejudice.txt";
         double bstMapTime = testMapTime(bstMap, fileName);
         double linkedListMapTime = testMapTime(linkedListMap, fileName);
-        System.out.println("bstMapTime: " + bstMapTime + " s");
-        System.out.println("linkedListMapTime: " + linkedListMapTime + " s");
+        double avlMapTime = testMapTime(avlMap, fileName);
+        System.out.println("bstMapTime: " + bstMapTime + " s\n");
+        System.out.println("linkedListMapTime: " + linkedListMapTime + " s\n");
+        System.out.println("AVLMapTime: " + avlMapTime + " s\n");
     }
 
     public static void linkedListMapTest() {
@@ -51,9 +55,9 @@ public class MapTest {
                 map1.set(word, map1.get(word) + 1);
             else
                 map1.add(word, 1);
-        System.out.println("Total different words: " + map1.getSize());
-        System.out.println("Frequency of pride: " + map1.get("pride"));
-        System.out.println("Frequency of prejudice: " + map1.get("prejudice"));
+        System.out.println("Total different words: " + map1.getSize() + "\n");
+        System.out.println("Frequency of pride: " + map1.get("pride") + "\n");
+        System.out.println("Frequency of prejudice: " + map1.get("prejudice") + "\n");
     }
 
     // 测试使用map读取fileName并计入映射的操作。
@@ -75,7 +79,7 @@ public class MapTest {
         System.out.println("Total words: " + words.size());
         System.out.println("Total different words: " + map.getSize());
         System.out.println("Frequency of pride: " + map.get("pride"));
-        System.out.println("Frequency of prejudice: " + map.get("prejudice"));
+        System.out.println("Frequency of prejudice: " + map.get("prejudice") + "\n");
         return (endTime - startTime) / 1000000000.0;
     }
 
