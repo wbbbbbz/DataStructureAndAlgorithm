@@ -10,3 +10,6 @@
 - [第 8 章 优先队列和堆](notes/datastructure/Chapter8.md)
 - [第 9 章 线段树](notes/datastructure/Chapter9.md)
 - [第 10 章 Trie](notes/datastructure/Chapter10.md)
+- [第 11 章 并查集](notes/datastructure/Chapter11.md)
+- [第 12 章 AVL](notes/datastructure/Chapter12.md)
+- [第 13 章 红黑树](notes/datastructure/Chapter13.md)

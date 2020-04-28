@@ -2,16 +2,20 @@ package datastructure.test;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import datastructure.AVLTree;
 import datastructure.BSTMap;
 import datastructure.FileOperation;
+import datastructure.RedBlackTree;
 
 public class AVLTreeTest {
     public static void main(String[] args) {
         // testAVLTree();
         // testAVLTreeTime();
-        testAVLTreeRemove();
+        // testAVLTreeTime2();
+        testAVLTreeTime3();
+        // testAVLTreeRemove();
     }
 
     public static void testAVLTree() {
@@ -85,9 +89,107 @@ public class AVLTreeTest {
 
             time = (endTime - startTime) / 1000000000.0;
             System.out.println("AVL: " + time + " s");
+
+            // Test RBTree
+            startTime = System.nanoTime();
+
+            RedBlackTree<String, Integer> rbt = new RedBlackTree<>();
+            for (String word : words) {
+                if (rbt.contains(word))
+                    rbt.set(word, rbt.get(word) + 1);
+                else
+                    rbt.add(word, 1);
+            }
+
+            for (String word : words)
+                rbt.contains(word);
+
+            endTime = System.nanoTime();
+
+            time = (endTime - startTime) / 1000000000.0;
+            System.out.println("RBTree: " + time + " s");
         }
 
         System.out.println();
+    }
+
+    public static void testAVLTreeTime2() {
+
+        // int n = 20000000;
+        int n = 20000000;
+
+        Random random = new Random(n);
+        ArrayList<Integer> testData = new ArrayList<>(n);
+        for (int i = 0; i < n; i++)
+            testData.add(random.nextInt(Integer.MAX_VALUE));
+
+        // Test BST
+        long startTime = System.nanoTime();
+
+        BSTMap<Integer, Integer> bst = new BSTMap<>();
+        for (Integer x : testData)
+            bst.add(x, null);
+
+        long endTime = System.nanoTime();
+
+        double time = (endTime - startTime) / 1000000000.0;
+        System.out.println("BST: " + time + " s");
+
+        // Test AVL
+        startTime = System.nanoTime();
+
+        AVLTree<Integer, Integer> avl = new AVLTree<>();
+        for (Integer x : testData)
+            avl.add(x, null);
+
+        endTime = System.nanoTime();
+
+        time = (endTime - startTime) / 1000000000.0;
+        System.out.println("AVL: " + time + " s");
+
+        // Test RBTree
+        startTime = System.nanoTime();
+
+        RedBlackTree<Integer, Integer> rbt = new RedBlackTree<>();
+        for (Integer x : testData)
+            rbt.add(x, null);
+
+        endTime = System.nanoTime();
+
+        time = (endTime - startTime) / 1000000000.0;
+        System.out.println("RBTree: " + time + " s");
+    }
+
+    public static void testAVLTreeTime3() {
+        int n = 20000000;
+
+        ArrayList<Integer> testData = new ArrayList<>(n);
+        for (int i = 0; i < n; i++)
+            testData.add(i);
+
+        // Test AVL
+        long startTime = System.nanoTime();
+
+        AVLTree<Integer, Integer> avl = new AVLTree<>();
+        for (Integer x : testData)
+            avl.add(x, null);
+
+        long endTime = System.nanoTime();
+
+        double time = (endTime - startTime) / 1000000000.0;
+        System.out.println("AVL: " + time + " s");
+
+        // Test RBTree
+        startTime = System.nanoTime();
+
+        RedBlackTree<Integer, Integer> rbt = new RedBlackTree<>();
+        for (Integer x : testData)
+            rbt.add(x, null);
+
+        endTime = System.nanoTime();
+
+        time = (endTime - startTime) / 1000000000.0;
+        System.out.println("RBTree: " + time + " s");
     }
 
     public static void testAVLTreeRemove() {
