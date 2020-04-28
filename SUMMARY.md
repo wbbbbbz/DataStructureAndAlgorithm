@@ -14,3 +14,4 @@
 - [第 12 章 AVL](notes/datastructure/Chapter12.md)
 - [第 13 章 红黑树](notes/datastructure/Chapter13.md)
 - [第 14 章 哈希表](notes/datastructure/Chapter14.md)
+- [总结](notes/datastructure/Summary.md)
