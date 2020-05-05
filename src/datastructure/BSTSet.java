@@ -2,7 +2,7 @@ package datastructure;
 
 public class BSTSet<E extends Comparable<E>> implements Set<E> {
 
-    private BinarySearchTree<E> data;
+    private BinarySearchTree<E, Object> data;
 
     public BSTSet() {
         data = new BinarySearchTree<>();
@@ -10,7 +10,7 @@ public class BSTSet<E extends Comparable<E>> implements Set<E> {
 
     @Override
     public void add(E e) {
-        data.add(e);
+        data.add(e, null);
     }
 
     @Override

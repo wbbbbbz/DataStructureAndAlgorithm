@@ -9,7 +9,7 @@ public class BinarySearchTreeTest {
     }
 
     public static void binarySearchTreeTest() {
-        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        BinarySearchTree<Integer, Object> bst = new BinarySearchTree<>();
         // int[] nums = { 5, 3, 6, 8, 4, 2 };
         // for (int num : nums) {
         // bst.add(num);
@@ -41,7 +41,7 @@ public class BinarySearchTreeTest {
 
         int[] nums = { 5, 3, 6, 8, 4, 2 };
         for (int num : nums) {
-            bst.add(num);
+            bst.add(num, null);
         }
         bst.remove(5);
         System.out.println(bst);

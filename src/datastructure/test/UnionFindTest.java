@@ -3,8 +3,6 @@ package datastructure.test;
 import java.util.Random;
 
 import datastructure.UnionFind;
-import datastructure.UnionFindQuickFind;
-import datastructure.UnionFindQuickUnion;
 import datastructure.UnionFindQuickUnionPath;
 import datastructure.UnionFindQuickUnionRank;
 import datastructure.UnionFindQuickUnionSize;
