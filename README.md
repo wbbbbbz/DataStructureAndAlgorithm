@@ -1,7 +1,9 @@
 # 算法和数据结构学习笔记及源码
 
 ## 玩转数据结构 从入门到进阶笔记
+
 课程: [玩转数据结构 从入门到进阶-慕课网实战](https://coding.imooc.com/class/207.html)
+
 请同时参考[算法与数据结构 - 课程官方代码仓](https://github.com/liuyubobobo/Play-with-Algorithms)
 
 - [第 2 章 不要小瞧数组](notes/datastructure/Chapter2.md)
