@@ -4,7 +4,7 @@
 
 课程: [玩转数据结构 从入门到进阶-慕课网实战](https://coding.imooc.com/class/207.html)
 
-请同时参考[算法与数据结构 - 课程官方代码仓](https://github.com/liuyubobobo/Play-with-Algorithms)
+请同时参考[玩儿转数据结构 - 课程官方代码仓](https://github.com/liuyubobobo/Play-with-Data-Structures)
 
 - [第 2 章 不要小瞧数组](notes/datastructure/Chapter2.md)
 - [第 3 章 栈和队列](notes/datastructure/Chapter3.md)
@@ -19,3 +19,13 @@
 - [第 12 章 AVL](notes/datastructure/Chapter12.md)
 - [第 13 章 红黑树](notes/datastructure/Chapter13.md)
 - [第 14 章 哈希表](notes/datastructure/Chapter14.md)
+
+## 算法与数据结构 综合提升笔记
+
+课程: [算法与数据结构-慕课网实战](https://coding.imooc.com/class/71.html)
+
+
+请同时参考[算法与数据结构 - 课程官方代码仓](https://github.com/liuyubobobo/Play-with-Algorithms)
+
+- [第 2 章 排序基础](notes/algorithm/Chapter2.md)
+
