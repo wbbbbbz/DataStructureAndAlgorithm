@@ -117,4 +117,9 @@ public class MaxHeap<E extends Comparable<E>> {
             index = getMaxChild(index);
         }
     }
+
+    protected E get(int index) {
+        return data.get(index);
+    }
+
 }

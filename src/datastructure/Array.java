@@ -111,7 +111,7 @@ public class Array<E> {
     public E get(int index) {
         // 情况1. index超出数组范围
         if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Get failed. Index is out of bound.");
+            throw new IllegalArgumentException("Get failed. Index is out of bound at " + index + ".");
         }
         return data[index];
     }

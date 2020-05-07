@@ -1,6 +1,6 @@
 # 第 3 章 高级排序算法
 
-> 参考[常见的排序算法——常见的 10 种排序 - sc_FlyingDreams - 博客园](https://www.cnblogs.com/flyingdreams/p/11161157.html)
+> ## 参考[常见的排序算法——常见的 10 种排序 - sc_FlyingDreams - 博客园](https://www.cnblogs.com/flyingdreams/p/11161157.html)
 
 - 归并排序 Merge Sort
   - 不断分半，分到最小单位之后进行归并！

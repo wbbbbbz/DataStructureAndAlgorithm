@@ -7,8 +7,8 @@ import algorithm.sorting.SelectionSort;
 public class SortTest {
     public static void main(String[] args) {
         // sortTest();
-        // sortTest2();
-        sortTest3();
+        sortTest2();
+        // sortTest3();
     }
 
     private static void sortTest2() {
@@ -36,11 +36,12 @@ public class SortTest {
         // SortTestHelper.testSort("algorithm.sorting.ShellSort",
         // SortTestHelper.generateNearlyOrderedArray(n, 10));
 
-        int m = 100000;
+        int m = 1000000;
         System.out.println("\nTime of sorting " + m + " size completely random array");
         System.out.println("----------------------------------------------------------------------------------");
         SortTestHelper.testSort("algorithm.sorting.MergeSort", SortTestHelper.generateRandomArray(m, 0, 10));
         SortTestHelper.testSort("algorithm.sorting.QuickSort", SortTestHelper.generateRandomArray(m, 0, 10));
+        SortTestHelper.testSort("algorithm.sorting.HeapSort", SortTestHelper.generateRandomArray(m, 0, 10));
 
         int swapTimes = 10;
         System.out.println(
@@ -48,6 +49,7 @@ public class SortTest {
         System.out.println("----------------------------------------------------------------------------------");
         SortTestHelper.testSort("algorithm.sorting.MergeSort", SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
         SortTestHelper.testSort("algorithm.sorting.QuickSort", SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
+        SortTestHelper.testSort("algorithm.sorting.HeapSort", SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
         SortTestHelper.testSort("algorithm.sorting.InsertionSort",
                 SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
     }

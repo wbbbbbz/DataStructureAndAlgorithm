@@ -28,4 +28,6 @@
 请同时参考[算法与数据结构 - 课程官方代码仓](https://github.com/liuyubobobo/Play-with-Algorithms)
 
 - [第 2 章 排序基础](notes/algorithm/Chapter2.md)
+- [第 3 章 高级排序算法](notes/algorithm/Chapter3.md)
+- [第 4 章 堆和堆排序](notes/algorithm/Chapter4.md)
 
