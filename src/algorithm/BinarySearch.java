@@ -49,7 +49,46 @@ public class BinarySearch {
     }
 
     // 返回target 第一次出现的 index,或者是前一个元素的最后一个 index
-    public static int floor(Comparable[] arr, Comparable target){
-        
+    public static int floor(Comparable[] arr, Comparable target) {
+        if (arr[0].compareTo(target) > 0)
+            return -1;
+        // 在[left, right]里面进行二分搜索
+        // <target的时候left变化，>=target的时候right变化
+        // left保证是<target的最后一个,right保证是>=target的最后一个
+        // 最后判断right和target的大小
+        int left = 0;
+        int right = arr.length - 1;
+        while (left + 1 < right) {
+            // [0,1]则mid=0, [0,2]则mid=1，偏左
+            // 但是在while的条件下,不会出现left == mid的情况
+            int mid = left + (right - left) / 2;
+            if (arr[mid].compareTo(target) < 0)
+                left = mid;
+            else
+                right = mid;
+        }
+        return arr[right].compareTo(target) == 0 ? right : left;
+    }
+
+    // 返回target 第最后一次出现的 index,或者是后一个元素的第一个 index
+    public static int ceil(Comparable[] arr, Comparable target) {
+        if (arr[arr.length - 1].compareTo(target) < 0)
+            return -1;
+        // 在[left, right]里面进行二分搜索
+        // <=target的时候left变化，>target的时候right变化
+        // left保证是<=target的最后一个,right保证是>target的最后一个
+        // 最后判断left和target的大小
+        int left = 0;
+        int right = arr.length - 1;
+        while (left + 1 < right) {
+            // [0,1]则mid=0, [0,2]则mid=1，偏左
+            // 但是在while的条件下,不会出现left == mid的情况
+            int mid = left + (right - left) / 2;
+            if (arr[mid].compareTo(target) <= 0)
+                left = mid;
+            else
+                right = mid;
+        }
+        return arr[left].compareTo(target) == 0 ? left : right;
     }
 }

@@ -6,6 +6,7 @@ public class BinarySearchTest {
 
     public static void main(String[] args) {
         binarySearchTest();
+        floorAndCeilTest();
     }
 
     private static void binarySearchTest() {
@@ -46,5 +47,25 @@ public class BinarySearchTest {
         }
         endTime = System.nanoTime();
         System.out.println("\nBinary Search (With Recursion): " + (endTime - startTime) / 1000000.0 + "ms");
+    }
+
+    private static void floorAndCeilTest() {
+        Integer arr[] = new Integer[] { 1, 1, 1, 2, 2, 2, 2, 2, 4, 4, 5, 5, 5, 6, 6, 6 };
+        for (int i = 0; i <= 8; i++) {
+
+            int floorIndex = BinarySearch.floor(arr, i);
+            System.out.println("the floor index of " + i + " is " + floorIndex + ".");
+            if (floorIndex >= 0 && floorIndex < arr.length)
+                System.out.println("The value is " + arr[floorIndex] + ".");
+            System.out.println();
+
+            int ceilIndex = BinarySearch.ceil(arr, i);
+            System.out.println("the ceil index of " + i + " is " + ceilIndex + ".");
+            if (ceilIndex >= 0 && ceilIndex < arr.length)
+                System.out.println("The value is " + arr[ceilIndex] + ".");
+            System.out.println();
+
+            System.out.println();
+        }
     }
 }
