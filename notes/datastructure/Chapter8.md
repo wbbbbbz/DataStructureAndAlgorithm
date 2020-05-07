@@ -45,21 +45,25 @@
     - 每一个叶子节点就是一个最大堆
   - 直接将 n 个元素逐一插入空堆是 O(nlogn)
   - heapify 的过程算法复杂度是 O(n)
+  - 参考[algorithm - How can building a heap be O(n) time complexity? - Stack Overflow](https://stackoverflow.com/questions/9755721/how-can-building-a-heap-be-on-time-complexity)
 
 - 优先队列
 
   - 基本可以使用队列所有的接口！
   - 数组，顺序线性结构都可以实现优先队列，只是时间不一样！
 
-- d叉堆
-  - 层数少，log的底变大
-  - 但是siftup和siftdown要考虑的节点变多，所以制衡
+- d 叉堆
+
+  - 层数少，log 的底变大
+  - 但是 siftup 和 siftdown 要考虑的节点变多，所以制衡
   - 可以进行优化
 
 - 索引堆
+
   - 如果想要修改堆中的元素可以使用
 
 - 广义队列
+
   - 其实只要能入队和出队就是队列
   - 栈也可以理解为一种队列
   - 二分搜索树的非递归前序遍历和层序遍历逻辑一致，数据结构不一样而已
@@ -74,4 +78,4 @@
   - 如何打印成树？
   - 广度优先遍历递归？
   - 最小堆
-  - d叉堆
+  - d 叉堆
