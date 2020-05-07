@@ -4,6 +4,9 @@ import java.util.Random;
 
 public class QuickSort {
 
+    public static final boolean LARGEST = true;
+    public static final boolean SMALLEST = false;
+
     private QuickSort() {
     };
 
@@ -80,6 +83,7 @@ public class QuickSort {
     // partition，返回pivot的正确索引
     // 第3版，quick sort 3 ways
     // < = > 同时分组
+    // [left, lt-1] < V, [lt, gt-1] = V, [gt, right-1] > V
     private static int[] partition3(Comparable[] arr, int left, int right) {
         // 定义pivot为left的元素，并以此为标准开始partition
         Random random = new Random();
@@ -107,5 +111,25 @@ public class QuickSort {
         Object temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+    }
+
+    public static Comparable selectNth(Comparable[] arr, int n, boolean isLargest) {
+
+        if (isLargest == LARGEST)
+            n = arr.length - n;
+        else
+            n--;
+
+        int left = 0;
+        int right = arr.length;
+        while (true) {
+            int[] ltRt = partition3(arr, left, right);
+            if (n > ltRt[0] && n < ltRt[1])
+                return arr[ltRt[0] + 1];
+            if (n <= ltRt[0])
+                right = ltRt[0] + 1;
+            else
+                left = ltRt[1];
+        }
     }
 }

@@ -134,4 +134,17 @@ public class SortTestHelper {
         }
         return arr;
     }
+
+    // 将数组arr随机化
+    public static void shuffleArray(Object[] arr) {
+
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            int j = (int) (Math.random() * (n - i)) + i;
+
+            Object t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+        }
+    }
 }
