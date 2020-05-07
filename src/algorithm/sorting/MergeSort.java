@@ -112,10 +112,10 @@ public class MergeSort {
         int count = 0;
         for (int i = left; i <= right; i++) {
             if (leftIndex > mid) {
-                aux[i] = arr[rightIndex++];
+                aux[i] = arr[rightIndex];
                 rightIndex++;
             } else if (rightIndex > right) {
-                aux[i] = arr[leftIndex++];
+                aux[i] = arr[leftIndex];
                 leftIndex++;
             } else if (arr[leftIndex].compareTo(arr[rightIndex]) <= 0) {
                 aux[i] = arr[leftIndex];
