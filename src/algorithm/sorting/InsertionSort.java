@@ -58,4 +58,18 @@ public class InsertionSort {
         arr[j] = temp;
     }
 
+    // 对arr的[left, right]范围进行插入排序
+    public static void sort(Comparable[] arr, int left, int right) {
+        for (int i = left + 1; i <= right; i++) {
+            // 复制一份i的元素
+            Comparable temp = arr[i];
+            int j;
+            for (j = i; j > left && arr[j - 1].compareTo(arr[j]) > 0; j--)
+                // j与j-1元素进行比较，如果arr[j-1]>arr[j]则令arr[j]=arr[j-1]
+                arr[j] = arr[j - 1];
+            // 此时j要么为0，要么为第一个j-1<=j的位置，这个时候赋值即可
+            arr[j] = temp;
+        }
+    }
+
 }

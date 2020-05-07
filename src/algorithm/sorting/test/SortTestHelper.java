@@ -88,4 +88,50 @@ public class SortTestHelper {
             e.printStackTrace();
         }
     }
+
+    // 测试sortClassName所对应的排序算法排序arr数组所得到结果的正确性和算法运行时间
+    // 将算法的运行时间以long类型返回, 单位为毫秒(ms)
+    public static long testSort2(String sortClassName, Comparable[] arr) {
+
+        // 通过Java的反射机制，通过排序的类名，运行排序函数
+        try {
+            // 通过sortClassName获得排序函数的Class对象
+            Class sortClass = Class.forName(sortClassName);
+            // 通过排序函数的Class对象获得排序方法
+            Method sortMethod = sortClass.getMethod("sort", new Class[] { Comparable[].class });
+            // 排序参数只有一个，是可比较数组arr
+            Object[] params = new Object[] { arr };
+
+            long startTime = System.nanoTime();
+            // 调用排序函数
+            sortMethod.invoke(null, params);
+            long endTime = System.nanoTime();
+
+            assert isSorted(arr);
+
+            return (long) ((endTime - startTime) / 1000000.0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    // 生成一个完全有序的数组
+    public static Integer[] generateOrderedArray(int n) {
+
+        return generateNearlyOrderedArray(n, 0);
+    }
+
+    // 生成一个完全逆序的数组
+    public static Integer[] generateInversedArray(int n) {
+
+        Integer[] arr = generateOrderedArray(n);
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            Integer t = arr[i];
+            arr[i] = arr[n - i - 1];
+            arr[n - i - 1] = t;
+        }
+        return arr;
+    }
 }
