@@ -42,6 +42,7 @@ public class SortTest {
         SortTestHelper.testSort("algorithm.sorting.MergeSort", SortTestHelper.generateRandomArray(m, 0, 10));
         SortTestHelper.testSort("algorithm.sorting.QuickSort", SortTestHelper.generateRandomArray(m, 0, 10));
         SortTestHelper.testSort("algorithm.sorting.HeapSort", SortTestHelper.generateRandomArray(m, 0, 10));
+        SortTestHelper.testSort("algorithm.sorting.IndexHeapSort", SortTestHelper.generateRandomArray(m, 0, 10));
 
         int swapTimes = 10;
         System.out.println(
@@ -50,6 +51,8 @@ public class SortTest {
         SortTestHelper.testSort("algorithm.sorting.MergeSort", SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
         SortTestHelper.testSort("algorithm.sorting.QuickSort", SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
         SortTestHelper.testSort("algorithm.sorting.HeapSort", SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
+        SortTestHelper.testSort("algorithm.sorting.IndexHeapSort",
+                SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
         SortTestHelper.testSort("algorithm.sorting.InsertionSort",
                 SortTestHelper.generateNearlyOrderedArray(m, swapTimes));
     }

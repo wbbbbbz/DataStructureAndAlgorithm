@@ -58,9 +58,28 @@
   - 但是 siftup 和 siftdown 要考虑的节点变多，所以制衡
   - 可以进行优化
 
-- 索引堆
+- 索引堆(Index heap)
 
-  - 如果想要修改堆中的元素可以使用
+  - 构建堆的时候需要改变元素的位置，这样有一定的局限性
+    - 如果元素结构复杂的话交换的消耗是巨大的
+    - 元素索引改变后堆中元素很难进行改变了！因为无法访问了
+  - 索引堆把索引和元素分开构建(比如两个数组)。改变的是索引。
+    - 索引是 int，交换的效率非常高
+    - 可以进行修改
+  - 比较的是元素，交换的是 index
+  - 但是数据的更改需要进行优化
+    - 因为用户传入的 index 实际上是底层 data 的值，这个时候需要在 indexes 中寻找出 indexes[j] = i;
+    - O(n)级别的修改
+  - 优化：反向查询
+    - 再维护一个数组，rev。记录的是反向索引。表示索引 i 在 indexes（堆）中的位置
+    - indexes[i] = j, indexes[j] = i
+    - indexes[reverse[i]] - i, reverse[indexes[i]] = i
+    - 增加和swap的时候需要维护reverse！
+      - swap的时候，reverse[indexes[i]] = i reverse[indexes[j]] = j;
+    - reverse[i] != -1来判断是否含有该元素！
+    - 还有很多地方没有实装完成
+      - indexes和reverse的动态扩容
+      - 数据的实际出列
 
 - 广义队列
 
