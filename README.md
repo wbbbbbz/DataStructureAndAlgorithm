@@ -30,4 +30,5 @@
 - [第 3 章 高级排序算法](notes/algorithm/Chapter3.md)
 - [第 4 章 堆和堆排序](notes/algorithm/Chapter4.md)
 - [第 5 章 二分搜索树](notes/algorithm/Chapter5.md)
-- [第 6 章 并查集](notes/algorithm/Chapter5.md)
+- [第 6 章 并查集](notes/algorithm/Chapter6.md)
+- [第 7 章 图的基础](notes/algorithm/Chapter7.md)
