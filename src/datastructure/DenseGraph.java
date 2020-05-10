@@ -86,8 +86,9 @@ public class DenseGraph implements Graph {
     @Override
     public void show() {
         for (int i = 0; i < vertexes; i++) {
+            System.out.print("vertex " + String.format("%02d", i) + ":");
             for (int j = 0; j < vertexes; j++)
-                System.out.print(graph[i][j] + "\t");
+                System.out.print(String.format("%2d", (graph[i][j] ? 1 : 0)));
             System.out.println();
         }
 

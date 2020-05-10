@@ -77,9 +77,9 @@ public class SparseGraph implements Graph {
     @Override
     public void show() {
         for (int i = 0; i < vertexes; i++) {
-            System.out.print("vertex " + i + ":\t");
+            System.out.print("vertex " + String.format("%02d", i) + ": ");
             for (int j = 0; j < graph[i].getSize(); j++)
-                System.out.print(graph[i].get(j) + "\t");
+                System.out.print(String.format("%02d", graph[i].get(j)) + " ");
             System.out.println();
         }
 
