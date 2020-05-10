@@ -16,7 +16,7 @@ public class TrieTest {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if (FileOperation.readFile("testfiles\\pride-and-prejudice.txt", words)) {
 
             long startTime = System.nanoTime();
 

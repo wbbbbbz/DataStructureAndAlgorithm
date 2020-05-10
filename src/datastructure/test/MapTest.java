@@ -17,7 +17,7 @@ public class MapTest {
         Map<String, Integer> bstMap = new BSTMap<>();
         Map<String, Integer> linkedListMap = new LinkedListMap<>();
         Map<String, Integer> avlMap = new AVLMap<>();
-        String fileName = "pride-and-prejudice.txt";
+        String fileName = "testfiles\\pride-and-prejudice.txt";
         double bstMapTime = testMapTime(bstMap, fileName);
         double linkedListMapTime = testMapTime(linkedListMap, fileName);
         double avlMapTime = testMapTime(avlMap, fileName);
@@ -29,7 +29,7 @@ public class MapTest {
     public static void linkedListMapTest() {
         System.out.println("Pride and Prejudice");
         ArrayList<String> words1 = new ArrayList<>();
-        FileOperation.readFile("pride-and-prejudice.txt", words1);
+        FileOperation.readFile("testfiles\\pride-and-prejudice.txt", words1);
         System.out.println("Total words: " + words1.size());
 
         LinkedListMap<String, Integer> map1 = new LinkedListMap<>();
@@ -46,7 +46,7 @@ public class MapTest {
     public static void bstMapTest() {
         System.out.println("Pride and Prejudice");
         ArrayList<String> words1 = new ArrayList<>();
-        FileOperation.readFile("pride-and-prejudice.txt", words1);
+        FileOperation.readFile("testfiles\\pride-and-prejudice.txt", words1);
         System.out.println("Total words: " + words1.size());
 
         BSTMap<String, Integer> map1 = new BSTMap<>();

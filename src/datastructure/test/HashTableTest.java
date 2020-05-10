@@ -14,7 +14,7 @@ public class HashTableTest {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if (FileOperation.readFile("testfiles\\pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
             // Collections.sort(words);

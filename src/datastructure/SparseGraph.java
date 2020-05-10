@@ -2,11 +2,9 @@ package datastructure;
 
 import java.util.Vector;
 
-// 稠密图 - 邻接矩阵
-// 直接去掉了平行边的概念了
-// O(1)判断是否有边
 // 不考虑自环边
-public class DenseGraph {
+// 允许平行边
+public class SparseGraph {
 
     public static final boolean DIRECTED = true;
     public static final boolean UNDIRECTED = false;
@@ -15,15 +13,15 @@ public class DenseGraph {
     // true: 有向图
     private boolean isDirected;
     // 邻接矩阵: true代表连接
-    private boolean[][] graph;
+    private LinkedList[] graph;
 
-    public DenseGraph(int vertexes, boolean isDirected) {
+    public SparseGraph(int vertexes, boolean isDirected) {
         this.vertexes = vertexes;
         this.edges = 0;
         this.isDirected = isDirected;
-        this.graph = new boolean[vertexes][vertexes];
+        this.graph = new LinkedList[vertexes];
         for (int i = 0; i < vertexes; i++)
-            graph[i] = new boolean[vertexes];
+            graph[i] = new LinkedList<Integer>();
     }
 
     public int getVertexes() {
@@ -39,14 +37,11 @@ public class DenseGraph {
         boundsCheck(v);
         boundsCheck(w);
 
-        if (hasEdge(v, w))
-            return;
-
-        graph[v][w] = true;
+        // 允许平行边
+        graph[v].addFirst(w);
         // 无向图的话，两边都要修改
-        // v == w: 自环边，不考虑
         if (v != w && !isDirected)
-            graph[w][v] = true;
+            graph[w].addFirst(v);
 
         edges++;
     }
@@ -54,7 +49,7 @@ public class DenseGraph {
     public boolean hasEdge(int v, int w) {
         boundsCheck(v);
         boundsCheck(w);
-        return graph[v][w];
+        return graph[v].contains(w);
     }
 
     private void boundsCheck(int v) {
@@ -66,11 +61,7 @@ public class DenseGraph {
     // 由于java使用引用机制，返回一个Vector不会带来额外开销,
     public Iterable<Integer> adj(int v) {
         boundsCheck(v);
-        Vector<Integer> adjV = new Vector<Integer>();
-        for (int i = 0; i < vertexes; i++)
-            if (graph[v][i])
-                adjV.add(i);
-        return adjV;
+        return graph[v].iterable();
     }
 
 }

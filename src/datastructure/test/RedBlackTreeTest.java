@@ -15,7 +15,7 @@ public class RedBlackTreeTest {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if (FileOperation.readFile("testfiles\\pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
             RedBlackTree<String, Integer> map = new RedBlackTree<>();

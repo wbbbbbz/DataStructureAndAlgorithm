@@ -1,5 +1,7 @@
 package datastructure;
 
+import java.util.Vector;
+
 public class LinkedList<E> {
 
     private class Node {
@@ -171,5 +173,16 @@ public class LinkedList<E> {
         }
         output.append("NULL");
         return output.toString();
+    }
+
+    // 返回图中一个顶点的所有邻边
+    public Iterable<E> iterable() {
+        Vector<E> res = new Vector<>();
+        Node node = dummyHead.next;
+        for (int i = 0; i < size; i++) {
+            res.add(node.e);
+            node = node.next;
+        }
+        return res;
     }
 }

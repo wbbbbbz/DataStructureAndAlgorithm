@@ -11,10 +11,10 @@ import datastructure.RedBlackTree;
 
 public class AVLTreeTest {
     public static void main(String[] args) {
-        // testAVLTree();
+        testAVLTree();
         // testAVLTreeTime();
         // testAVLTreeTime2();
-        testAVLTreeTime3();
+        // testAVLTreeTime3();
         // testAVLTreeRemove();
     }
 
@@ -22,7 +22,7 @@ public class AVLTreeTest {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if (FileOperation.readFile("testfiles\\pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
             AVLTree<String, Integer> map = new AVLTree<>();
@@ -47,7 +47,7 @@ public class AVLTreeTest {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if (FileOperation.readFile("testfiles\\pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
             Collections.sort(words);
@@ -197,7 +197,7 @@ public class AVLTreeTest {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if (FileOperation.readFile("testfiles\\pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
             AVLTree<String, Integer> map = new AVLTree<>();
