@@ -1,6 +1,6 @@
-package algorithm.test;
+package algorithm.searching.test;
 
-import algorithm.BinarySearch;
+import algorithm.searching.BinarySearch;
 
 public class BinarySearchTest {
 
