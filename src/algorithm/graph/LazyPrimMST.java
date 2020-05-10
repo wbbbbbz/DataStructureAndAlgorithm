@@ -28,6 +28,7 @@ public class LazyPrimMST<Weight extends Number & Comparable> {
             Edge<Weight> e = pq.extractMin();
             // 如果这条边的两端都已经访问过了, 则扔掉这条边
             // 因为只要在pq中，那么一定有一条边是true
+            // 以marked来区分是不是横切边
             if (marked[e.v()] == marked[e.w()])
                 continue;
             // 否则, 这条边则应该存在在最小生成树中

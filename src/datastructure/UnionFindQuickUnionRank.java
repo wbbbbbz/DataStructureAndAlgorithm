@@ -23,10 +23,13 @@ public class UnionFindQuickUnionRank implements UnionFind {
     private int find(int p) {
         if (p < 0 && p >= parent.length)
             throw new IllegalArgumentException("p is out of bound.");
-        while (p != parent[p]) {
-            p = parent[p];
-        }
-        return p;
+
+        // 递归思路：find是返回p索引的根节点。
+        // 所以如果现在p索引的父节点不是根节点，那就让父节点等于父节点的根节点即可
+
+        if (parent[p] != p)
+            parent[p] = find(parent[p]);
+        return parent[p];
     }
 
     @Override
