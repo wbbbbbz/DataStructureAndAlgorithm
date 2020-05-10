@@ -57,7 +57,7 @@ public class Array<E> {
             throw new IllegalArgumentException("Index is out of bound");
         E eI = data[i];
         data[i] = data[j];
-        data[j] = data[i];
+        data[j] = eI;
         eI = null;
     }
 

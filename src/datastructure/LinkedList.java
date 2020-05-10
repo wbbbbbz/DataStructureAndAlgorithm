@@ -175,7 +175,7 @@ public class LinkedList<E> {
         return output.toString();
     }
 
-    // 返回图中一个顶点的所有邻边
+    // 返回iterable
     public Iterable<E> iterable() {
         Vector<E> res = new Vector<>();
         Node node = dummyHead.next;
