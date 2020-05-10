@@ -4,7 +4,7 @@ import java.util.Vector;
 
 // 不考虑自环边
 // 允许平行边
-public class SparseGraph {
+public class SparseGraph implements Graph {
 
     public static final boolean DIRECTED = true;
     public static final boolean UNDIRECTED = false;
@@ -62,6 +62,27 @@ public class SparseGraph {
     public Iterable<Integer> adj(int v) {
         boundsCheck(v);
         return graph[v].iterable();
+    }
+
+    @Override
+    public int V() {
+        return vertexes;
+    }
+
+    @Override
+    public int E() {
+        return edges;
+    }
+
+    @Override
+    public void show() {
+        for (int i = 0; i < vertexes; i++) {
+            System.out.print("vertex " + i + ":\t");
+            for (int j = 0; j < graph[i].getSize(); j++)
+                System.out.print(graph[i].get(j) + "\t");
+            System.out.println();
+        }
+
     }
 
 }

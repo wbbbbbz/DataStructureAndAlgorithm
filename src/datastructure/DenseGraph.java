@@ -6,7 +6,7 @@ import java.util.Vector;
 // 直接去掉了平行边的概念了
 // O(1)判断是否有边
 // 不考虑自环边
-public class DenseGraph {
+public class DenseGraph implements Graph {
 
     public static final boolean DIRECTED = true;
     public static final boolean UNDIRECTED = false;
@@ -71,6 +71,26 @@ public class DenseGraph {
             if (graph[v][i])
                 adjV.add(i);
         return adjV;
+    }
+
+    @Override
+    public int V() {
+        return vertexes;
+    }
+
+    @Override
+    public int E() {
+        return edges;
+    }
+
+    @Override
+    public void show() {
+        for (int i = 0; i < vertexes; i++) {
+            for (int j = 0; j < vertexes; j++)
+                System.out.print(graph[i][j] + "\t");
+            System.out.println();
+        }
+
     }
 
 }
