@@ -33,4 +33,5 @@
 - [第 6 章 并查集](notes/algorithm/Chapter6.md)
 - [第 7 章 图的基础](notes/algorithm/Chapter7.md)
 - [第 8 章 最小生成树](notes/algorithm/Chapter8.md)
+- [第 9 章 最短路径](notes/algorithm/Chapter9.md)
 
