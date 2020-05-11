@@ -36,3 +36,10 @@
 - [第 9 章 最短路径](notes/algorithm/Chapter9.md)
 - [第 10 章 结束语](notes/algorithm/Chapter10.md)
 
+## 算法与数据结构 综合提升笔记
+
+课程: [玩转算法系列--图论精讲 面试升职必备（Java 版）](https://coding.imooc.com/class/370.html)
+
+请同时参考[玩儿转图论算法 - 课程官方代码仓](https://github.com/liuyubobobo/Play-with-Graph-Algorithms)
+
+- [第 2 章 图的基本表示](notes/graph/Chapter2.md)
