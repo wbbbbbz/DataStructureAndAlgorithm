@@ -1,8 +1,9 @@
 package datastructure;
 
+import java.util.Iterator;
 import java.util.Vector;
 
-public class LinkedList<E> {
+public class LinkedList<E> implements Iterable<E> {
 
     private class Node {
         public E e;
@@ -184,5 +185,26 @@ public class LinkedList<E> {
             node = node.next;
         }
         return res;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        Iterator<E> iterator = new Iterator<E>() {
+
+            private Node node = dummyHead;
+
+            @Override
+            public boolean hasNext() {
+
+                return node.next != null;
+            }
+
+            @Override
+            public E next() {
+                this.node = node.next;
+                return node.e;
+            }
+        };
+        return iterator;
     }
 }

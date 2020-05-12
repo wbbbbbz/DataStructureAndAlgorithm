@@ -2,23 +2,24 @@ package datastructure;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeSet;
 
-// 邻接矩阵的数据结构类，用于图
-public class AdjMatrix {
+public class AdjSet {
 
     private int V, E; // V为顶点数，E为边数
-    private int[][] adj; // 邻接矩阵
+    private TreeSet<Integer>[] adj; // 邻接集合
 
-    public AdjMatrix(String filename) {
+    public AdjSet(String filename) {
         File file = new File(filename);
 
         try (Scanner scanner = new Scanner(file)) {
             V = scanner.nextInt();
             if (V < 0)
                 throw new IllegalArgumentException("V must be non-negative!");
-            adj = new int[V][V];
+            adj = new TreeSet[V];
+            for (int i = 0; i < V; i++)
+                adj[i] = new TreeSet<>();
 
             E = scanner.nextInt();
             if (E < 0)
@@ -32,10 +33,10 @@ public class AdjMatrix {
                 // 检测自环边和平行边
                 if (v == w)
                     throw new IllegalArgumentException("Self Loop is Detected");
-                if (adj[v][w] == 1)
+                if (adj[v].contains(w))
                     throw new IllegalArgumentException("Parallel Edge is Detected");
-                adj[v][w] = 1;
-                adj[w][v] = 1;
+                adj[v].add(w);
+                adj[w].add(v);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,19 +54,13 @@ public class AdjMatrix {
         StringBuilder sb = new StringBuilder();
 
         sb.append(String.format("V = %d, E = %d\n", V, E));
-        for (int i = 0; i < V; i++) {
-            sb.append("vertex " + String.format("%02d", i) + ":");
-            for (int j = 0; j < V; j++)
-                sb.append(String.format("%2d", adj[i][j]));
+        for (int v = 0; v < V; v++) {
+            sb.append("vertex " + String.format("%02d", v) + ":");
+            for (int w : adj[v])
+                sb.append(String.format("%3d", w));
             sb.append("\n");
         }
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-
-        AdjMatrix adjMatrix = new AdjMatrix("testfiles\\testG1.txt");
-        System.out.print(adjMatrix);
     }
 
     public int V() {
@@ -79,24 +74,24 @@ public class AdjMatrix {
     public boolean hasEdge(int v, int w) {
         validateVertex(v);
         validateVertex(w);
-        return adj[v][w] == 1;
+        return adj[v].contains(w);
     }
 
     public Iterable<Integer> adj(int v) {
         validateVertex(v);
-        ArrayList<Integer> res = new ArrayList<>();
-        for (int i = 0; i < V; i++) {
-            if (adj[v][i] == 1) {
-                res.add(i);
-            }
-        }
-        return res;
+        return adj[v];
 
     }
 
     public int degree(int v) {
+        // 在adj中已经检查了！
         validateVertex(v);
-        return adj[v].length;
+        return adj[v].size();
     }
 
+    public static void main(String[] args) {
+
+        AdjSet adjSet = new AdjSet("testfiles\\testG1.txt");
+        System.out.print(adjSet);
+    }
 }
