@@ -14,4 +14,6 @@ public interface Graph {
 
     public Iterable<Integer> adj(int v);
 
+    public int degree(int v);
+
 }

@@ -94,4 +94,15 @@ public class DenseGraph implements Graph {
 
     }
 
+    @Override
+    public int degree(int v) {
+        boundsCheck(v);
+        int res = 0;
+        for (boolean b : graph[v]) {
+            if (b)
+                res++;
+        }
+        return res;
+    }
+
 }

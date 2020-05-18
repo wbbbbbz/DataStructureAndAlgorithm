@@ -43,3 +43,4 @@
 请同时参考[玩儿转图论算法 - 课程官方代码仓](https://github.com/liuyubobobo/Play-with-Graph-Algorithms)
 
 - [第 2 章 图的基本表示](notes/graph/Chapter2.md)
+- [第 3 章 图的深度优先遍历](notes/graph/Chapter3.md)

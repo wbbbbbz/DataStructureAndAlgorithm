@@ -1,7 +1,5 @@
 package datastructure;
 
-import java.util.Vector;
-
 // 不考虑自环边
 // 允许平行边
 public class SparseGraph implements Graph {
@@ -85,6 +83,10 @@ public class SparseGraph implements Graph {
 
     }
 
-    
+    @Override
+    public int degree(int v) {
+        boundsCheck(v);
+        return graph[v].getSize();
+    }
 
 }

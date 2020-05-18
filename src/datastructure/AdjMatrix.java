@@ -96,7 +96,10 @@ public class AdjMatrix {
 
     public int degree(int v) {
         validateVertex(v);
-        return adj[v].length;
+        int res = 0;
+        for (int i : adj(v))
+            res++;
+        return res;
     }
 
 }

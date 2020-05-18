@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-public class AdjSet {
+public class AdjSet implements Graph {
 
     private int V, E; // V为顶点数，E为边数
     private TreeSet<Integer>[] adj; // 邻接集合
@@ -93,5 +93,20 @@ public class AdjSet {
 
         AdjSet adjSet = new AdjSet("testfiles\\testG1.txt");
         System.out.print(adjSet);
+    }
+
+    @Override
+    public void addEdge(int v, int w) {
+        if (adj[v].contains(w))
+            throw new IllegalArgumentException("Parallel Edge is Detected");
+        if (v == w)
+            throw new IllegalArgumentException("Self Loop is Detected");
+        adj[v].add(w);
+        adj[w].add(v);
+    }
+
+    @Override
+    public void show() {
+        System.out.println(toString());
     }
 }
