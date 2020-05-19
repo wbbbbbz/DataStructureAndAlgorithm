@@ -36,8 +36,8 @@ public class DenseGraph implements Graph {
 
     // 传入v和w两个顶点
     public void addEdge(int v, int w) {
-        boundsCheck(v);
-        boundsCheck(w);
+        validateVertex(v);
+        validateVertex(w);
 
         if (hasEdge(v, w))
             return;
@@ -52,20 +52,20 @@ public class DenseGraph implements Graph {
     }
 
     public boolean hasEdge(int v, int w) {
-        boundsCheck(v);
-        boundsCheck(w);
+        validateVertex(v);
+        validateVertex(w);
         return graph[v][w];
     }
 
-    private void boundsCheck(int v) {
+    public void validateVertex(int v) {
         if (v < 0 || v >= vertexes)
-            throw new IllegalArgumentException("The parameter " + v + " is out of bounds!");
+            throw new IllegalArgumentException("vertex " + v + " is invalid");
     }
 
     // 返回图中一个顶点的所有邻边
     // 由于java使用引用机制，返回一个Vector不会带来额外开销,
     public Iterable<Integer> adj(int v) {
-        boundsCheck(v);
+        validateVertex(v);
         Vector<Integer> adjV = new Vector<Integer>();
         for (int i = 0; i < vertexes; i++)
             if (graph[v][i])
@@ -96,7 +96,7 @@ public class DenseGraph implements Graph {
 
     @Override
     public int degree(int v) {
-        boundsCheck(v);
+        validateVertex(v);
         int res = 0;
         for (boolean b : graph[v]) {
             if (b)

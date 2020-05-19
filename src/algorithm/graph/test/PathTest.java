@@ -1,6 +1,6 @@
 package algorithm.graph.test;
 
-import algorithm.graph.Path;
+import algorithm.graph.SingleSourcePath;
 import datastructure.ReadGraph;
 import datastructure.SparseGraph;
 
@@ -21,7 +21,7 @@ public class PathTest {
         g.show();
         System.out.println(lineSeperator);
 
-        Path path = new Path(g, 0);
+        SingleSourcePath path = new SingleSourcePath(g, 0);
         System.out.println("Path from 0 to 6 : ");
         path.showPath(6);
         System.out.println(lineSeperator);

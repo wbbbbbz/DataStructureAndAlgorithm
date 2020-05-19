@@ -1,6 +1,6 @@
 package algorithm.graph.test;
 
-import algorithm.graph.Path;
+import algorithm.graph.SingleSourcePath;
 import algorithm.graph.ShortestPath;
 import datastructure.ReadGraph;
 import datastructure.SparseGraph;
@@ -23,7 +23,7 @@ public class ShortestPathTest {
 
         // 比较使用深度优先遍历和广度优先遍历获得路径的不同
         // 广度优先遍历获得的是无权图的最短路径
-        Path dfs = new Path(g, 0);
+        SingleSourcePath dfs = new SingleSourcePath(g, 0);
         System.out.print("DFS : ");
         dfs.showPath(6);
         System.out.println(lineSeperator);
@@ -41,7 +41,7 @@ public class ShortestPathTest {
 
         // 比较使用深度优先遍历和广度优先遍历获得路径的不同
         // 广度优先遍历获得的是无权图的最短路径
-        Path dfs2 = new Path(g2, 0);
+        SingleSourcePath dfs2 = new SingleSourcePath(g2, 0);
         System.out.print("DFS : ");
         dfs2.showPath(3);
         System.out.println(lineSeperator);
