@@ -46,3 +46,4 @@
 - [第 3 章 图的深度优先遍历](notes/graph/Chapter3.md)
 - [第 4 章 图的深度优先遍历的应用](notes/graph/Chapter4.md)
 - [第 5 章 图的广度优先遍历](notes/graph/Chapter5.md)
+- [第 6 章 图论问题建模和 Floodfill](notes/graph/Chapter6.md)
