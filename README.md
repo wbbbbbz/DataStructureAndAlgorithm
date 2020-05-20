@@ -45,3 +45,4 @@
 - [第 2 章 图的基本表示](notes/graph/Chapter2.md)
 - [第 3 章 图的深度优先遍历](notes/graph/Chapter3.md)
 - [第 4 章 图的深度优先遍历的应用](notes/graph/Chapter4.md)
+- [第 5 章 图的广度优先遍历](notes/graph/Chapter5.md)

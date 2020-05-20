@@ -1,5 +1,7 @@
 package algorithm.graph;
 
+import java.util.LinkedList;
+
 import datastructure.AdjSet;
 import datastructure.Graph;
 
@@ -31,6 +33,30 @@ public class BipartitionDetection {
         return true;
     }
 
+    // 图的深度优先遍历
+    // 返回以s为顶点的图是否二分图
+    private boolean bfs(int s, boolean color) {
+
+        visited[s] = true;
+        colors[s] = color;
+        // 广度优先遍历
+        LinkedList<Integer> queue = new LinkedList<>();
+        queue.push(s);
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (Integer w : G.adj(v)) {
+                if (!visited[w]) {
+                    visited[w] = true;
+                    colors[w] = !colors[v];
+                    queue.push(w);
+                } else if (colors[w] == colors[v]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     // 构造函数，给无权图染色
     public BipartitionDetection(Graph graph) {
 
@@ -48,7 +74,7 @@ public class BipartitionDetection {
         // 遍历图
         for (int v = 0; v < G.V(); v++) {
             if (!visited[v]) {
-                if (!dfs(v, RED)) {
+                if (!bfs(v, RED)) {
                     isBipartite = false;
                     break;
                 }
@@ -65,7 +91,7 @@ public class BipartitionDetection {
     public static void main(String[] args) {
         String lineSeperator = "--------------------------------------------------------------------------------------";
 
-        String filename = "testfiles\\testG3.txt";
+        String filename = "testfiles\\testG2.txt";
         Graph g = new AdjSet(filename);
         System.out.println(lineSeperator);
         g.show();

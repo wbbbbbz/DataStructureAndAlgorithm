@@ -2,6 +2,7 @@ package algorithm.graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 
 import datastructure.AdjSet;
 import datastructure.Graph;
@@ -28,6 +29,26 @@ public class SingleSourcePath {
         }
     }
 
+    // 图的广度优先遍历
+    void bfs(int s, int parent) {
+
+        visited[s] = true;
+        from[s] = parent;
+        // 广度优先遍历
+        LinkedList<Integer> queue = new LinkedList<>();
+        queue.push(s);
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (Integer w : G.adj(v)) {
+                if (!visited[w]) {
+                    from[w] = v;
+                    visited[w] = true;
+                    queue.push(w);
+                }
+            }
+        }
+    }
+
     // 构造函数，求无权图的路径
     public SingleSourcePath(Graph graph, int s) {
 
@@ -44,7 +65,8 @@ public class SingleSourcePath {
 
         // 求图的路径
         // 原点的前一个顶点就是自己
-        dfs(s, s);
+        // dfs(s, s);
+        bfs(s, s);
 
     }
 
@@ -77,7 +99,7 @@ public class SingleSourcePath {
     public static void main(String[] args) {
         String lineSeperator = "--------------------------------------------------------------------------------------";
 
-        String filename = "testfiles\\testG.txt";
+        String filename = "testfiles\\testG1.txt";
         Graph g = new AdjSet(filename);
         System.out.println(lineSeperator);
         g.show();
@@ -89,6 +111,9 @@ public class SingleSourcePath {
         System.out.println(lineSeperator);
         System.out.println("Path from 0 to 5 : ");
         path.showPath(5);
+        System.out.println(lineSeperator);
+        System.out.println("Path from 0 to 4 : ");
+        path.showPath(4);
         System.out.println(lineSeperator);
     }
 

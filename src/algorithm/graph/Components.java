@@ -1,6 +1,7 @@
 package algorithm.graph;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import datastructure.AdjSet;
 import datastructure.Graph;
@@ -23,6 +24,24 @@ public class Components {
         }
     }
 
+    // 图的广度优先遍历
+    void bfs(int s) {
+
+        visited[s] = cccount;
+        // 广度优先遍历
+        LinkedList<Integer> queue = new LinkedList<>();
+        queue.push(s);
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (Integer w : G.adj(v)) {
+                if (visited[w] == -1) {
+                    visited[w] = cccount;
+                    queue.push(w);
+                }
+            }
+        }
+    }
+
     // 构造函数，求无权图的联通分量
     public Components(Graph graph) {
 
@@ -38,7 +57,7 @@ public class Components {
         // 求图的联通分量
         for (int i = 0; i < G.V(); i++)
             if (visited[i] == -1) {
-                dfs(i);
+                bfs(i);
                 cccount++;
             }
 

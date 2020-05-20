@@ -1,5 +1,7 @@
 package algorithm.graph;
 
+import java.util.LinkedList;
+
 import datastructure.AdjSet;
 import datastructure.Graph;
 
@@ -30,6 +32,30 @@ public class CycleDetection {
         return false;
     }
 
+    // 图的广度优先遍历
+    // 返回的是从s开始的图是否有环
+    private boolean bfs(int s, int parent) {
+
+        visited[s] = true;
+        from[s] = parent;
+        // 广度优先遍历
+        LinkedList<Integer> queue = new LinkedList<>();
+        queue.push(s);
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (Integer w : G.adj(v)) {
+                if (!visited[w]) {
+                    from[w] = v;
+                    visited[w] = true;
+                    queue.push(w);
+                } else if (w != from[v]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     // 构造函数，求无权图的路径
     public CycleDetection(Graph graph) {
 
@@ -46,7 +72,7 @@ public class CycleDetection {
         // 遍历图
         for (int v = 0; v < G.V(); v++) {
             if (!visited[v])
-                if (dfs(v, v)) {
+                if (bfs(v, v)) {
                     hasCycled = true;
                     break;
                 }
@@ -63,7 +89,7 @@ public class CycleDetection {
     public static void main(String[] args) {
         String lineSeperator = "--------------------------------------------------------------------------------------";
 
-        String filename = "testfiles\\testG3.txt";
+        String filename = "testfiles\\testG.txt";
         Graph g = new AdjSet(filename);
         System.out.println(lineSeperator);
         g.show();

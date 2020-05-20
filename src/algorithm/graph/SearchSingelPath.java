@@ -2,6 +2,7 @@ package algorithm.graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 
 import datastructure.AdjSet;
 import datastructure.Graph;
@@ -34,6 +35,32 @@ public class SearchSingelPath {
         return false;
     }
 
+    // 图的广度优先遍历
+    // 返回的是从s是否能达到t，s的前一个顶点是parent
+    private boolean bfs(int s, int parent) {
+
+        visited[s] = true;
+        from[s] = parent;
+        if (s == t)
+            return true;
+        // 广度优先遍历
+        LinkedList<Integer> queue = new LinkedList<>();
+        queue.push(s);
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (Integer w : G.adj(v)) {
+                if (!visited[w]) {
+                    from[w] = v;
+                    visited[w] = true;
+                    if (w == t)
+                        return true;
+                    queue.push(w);
+                }
+            }
+        }
+        return false;
+    }
+
     // 构造函数，求无权图的路径
     public SearchSingelPath(Graph graph, int s, int t) {
 
@@ -53,7 +80,8 @@ public class SearchSingelPath {
 
         // 求图的路径
         // 原点的前一个顶点就是自己
-        dfs(s, s);
+        // dfs(s, s);
+        bfs(s, s);
 
     }
 
