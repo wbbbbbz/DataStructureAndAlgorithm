@@ -47,3 +47,4 @@
 - [第 4 章 图的深度优先遍历的应用](notes/graph/Chapter4.md)
 - [第 5 章 图的广度优先遍历](notes/graph/Chapter5.md)
 - [第 6 章 图论问题建模和 Floodfill](notes/graph/Chapter6.md)
+- [第 7 章 图论搜索和人工智能](notes/graph/Chapter7.md)

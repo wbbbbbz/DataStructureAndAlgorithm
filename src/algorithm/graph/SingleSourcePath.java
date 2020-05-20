@@ -36,14 +36,14 @@ public class SingleSourcePath {
         from[s] = parent;
         // 广度优先遍历
         LinkedList<Integer> queue = new LinkedList<>();
-        queue.push(s);
+        queue.add(s);
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (Integer w : G.adj(v)) {
                 if (!visited[w]) {
                     from[w] = v;
                     visited[w] = true;
-                    queue.push(w);
+                    queue.add(w);
                 }
             }
         }

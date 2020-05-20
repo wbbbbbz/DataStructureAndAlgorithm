@@ -41,14 +41,14 @@ public class BipartitionDetection {
         colors[s] = color;
         // 广度优先遍历
         LinkedList<Integer> queue = new LinkedList<>();
-        queue.push(s);
+        queue.add(s);
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (Integer w : G.adj(v)) {
                 if (!visited[w]) {
                     visited[w] = true;
                     colors[w] = !colors[v];
-                    queue.push(w);
+                    queue.add(w);
                 } else if (colors[w] == colors[v]) {
                     return false;
                 }

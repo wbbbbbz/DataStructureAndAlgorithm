@@ -23,7 +23,7 @@ public class USSSPath {
         from[s] = s;
         // 广度优先遍历
         LinkedList<Integer> queue = new LinkedList<>();
-        queue.push(s);
+        queue.add(s);
         dis[s] = 0;
         while (!queue.isEmpty()) {
             int v = queue.poll();
@@ -32,7 +32,7 @@ public class USSSPath {
                     from[w] = v;
                     visited[w] = true;
                     dis[w] = dis[v] + 1;
-                    queue.push(w);
+                    queue.add(w);
                 }
             }
         }

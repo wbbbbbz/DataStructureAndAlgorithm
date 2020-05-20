@@ -37,7 +37,7 @@ public class GraphBFS {
             for (Integer w : G.adj(v)) {
                 if (!visited[w]) {
                     visited[w] = true;
-                    queue.push(w);
+                    queue.add(w);
                 }
             }
         }

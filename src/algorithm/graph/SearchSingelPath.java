@@ -45,7 +45,7 @@ public class SearchSingelPath {
             return true;
         // 广度优先遍历
         LinkedList<Integer> queue = new LinkedList<>();
-        queue.push(s);
+        queue.add(s);
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (Integer w : G.adj(v)) {
@@ -54,7 +54,7 @@ public class SearchSingelPath {
                     visited[w] = true;
                     if (w == t)
                         return true;
-                    queue.push(w);
+                    queue.add(w);
                 }
             }
         }
