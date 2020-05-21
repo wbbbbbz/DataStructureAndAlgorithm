@@ -29,3 +29,36 @@
   - 并查集也有时间复杂度，但是非常小，近乎为1
 
 - Prim算法
+  - 操作切分，从1个点:V-1个点开始
+    - 此时的最小横切边一定是最小生成树中的边
+  - 然后继续操作切分，最小横切边的另一个顶点加入切分，继续找边
+  - 每加入一个顶点，需要判断还是不是横切边
+  - 切分的操作可以用visited进行记录。访问过和未访问过的顶点(加入了最小生成树或者没加入的顶点)
+  - 外层是边数的循环，一次添加一个边
+    - 中层是所有最小生成树的点的循环
+      - 内层是该点的所有边的循环
+  - 这个时间复杂度是O(VE)
+    - 算法的问题是在于每加入一个新的顶点，需要把所有顶点的所有边都遍历一遍，看一下是不是最小横切边
+    - 但是实际上需要考虑的只是新加入的顶点连接的横切边
+    - 所以需要一个数据结构，需要存储需要考虑的横切边，并且快速找到最小值
+      - 使用优先队列，底层是一个最小堆
+      - 不一定是有效的横切边，取出的时候判断合法性就好
+      - 优化之后是O(ElogE)
+```java
+visited[0] = true;
+for(int i = 1; i < G.V(); i ++){
+    WeightedEdge minEdge = new WeightedEdge(-1, -1, Integer.MAX_VALUE);
+    for(int v = 0; v < G.V(); v ++)
+        if(visited[v])
+            for(int w: G.adj(v))
+                if(!visited[w] && G.getWeight(v, w) < minEdge.getWeight())
+                    minEdge = new WeightedEdge(v, w, G.getWeight(v, w));
+    mst.add(minEdge);
+    visited[minEdge.getV()] = true;
+    visited[minEdge.getW()] = true;
+}
+```
+
+- 拓展
+  - Fredman-Tarjan O(E + VlogV)
+  - Chazelle O(E\*)
