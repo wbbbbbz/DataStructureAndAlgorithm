@@ -48,4 +48,5 @@
 - [第 5 章 图的广度优先遍历](notes/graph/Chapter5.md)
 - [第 6 章 图论问题建模和 Floodfill](notes/graph/Chapter6.md)
 - [第 7 章 图论搜索和人工智能](notes/graph/Chapter7.md)
-- [第 8 章 桥，割点和图的遍历树](notes/graph/Chapter7.md)
+- [第 8 章 桥，割点和图的遍历树](notes/graph/Chapter8.md)
+- [第 9 章 哈密尔顿回路和状态压缩](notes/graph/Chapter9.md)
