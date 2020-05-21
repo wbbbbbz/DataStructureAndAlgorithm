@@ -50,3 +50,4 @@
 - [第 7 章 图论搜索和人工智能](notes/graph/Chapter7.md)
 - [第 8 章 桥，割点和图的遍历树](notes/graph/Chapter8.md)
 - [第 9 章 哈密尔顿回路和状态压缩](notes/graph/Chapter9.md)
+- [第 10 章 欧拉回路与欧拉路径](notes/graph/Chapter10.md)

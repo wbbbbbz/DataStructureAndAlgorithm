@@ -16,6 +16,8 @@ public interface Graph {
 
     public int degree(int v);
 
-	public void validateVertex(int v);
+    public void validateVertex(int v);
+
+    public void removeEdge(int v, int w);
 
 }

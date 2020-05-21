@@ -105,4 +105,14 @@ public class DenseGraph implements Graph {
         return res;
     }
 
+    @Override
+    public void removeEdge(int v, int w) {
+        validateVertex(v);
+        validateVertex(w);
+
+        graph[v][w] = false;
+        graph[w][v] = false;
+
+    }
+
 }

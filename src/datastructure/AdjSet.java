@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-public class AdjSet implements Graph {
+public class AdjSet implements Graph, Cloneable {
 
     private int V, E; // V为顶点数，E为边数
     private TreeSet<Integer>[] adj; // 邻接集合
@@ -108,5 +108,36 @@ public class AdjSet implements Graph {
     @Override
     public void show() {
         System.out.println(toString());
+    }
+
+    @Override
+    public void removeEdge(int v, int w) {
+        validateVertex(v);
+        validateVertex(w);
+
+        adj[v].remove(w);
+        adj[w].remove(v);
+
+    }
+
+    @Override
+    public Object clone() {
+
+        try {
+            AdjSet cloned = (AdjSet) super.clone();
+            cloned.adj = new TreeSet[V];
+            for (int i = 0; i < V; i++) {
+                cloned.adj[i] = new TreeSet<Integer>();
+                for (int v : this.adj(i)) {
+                    cloned.adj[i].add(v);
+                }
+            }
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
     }
 }

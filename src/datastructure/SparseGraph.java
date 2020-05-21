@@ -1,5 +1,7 @@
 package datastructure;
 
+import java.util.LinkedList;
+
 // 不考虑自环边
 // 允许平行边
 public class SparseGraph implements Graph {
@@ -59,7 +61,7 @@ public class SparseGraph implements Graph {
     // 由于java使用引用机制，返回一个Vector不会带来额外开销,
     public Iterable<Integer> adj(int v) {
         validateVertex(v);
-        return graph[v].iterable();
+        return graph[v];
     }
 
     @Override
@@ -76,7 +78,7 @@ public class SparseGraph implements Graph {
     public void show() {
         for (int i = 0; i < vertexes; i++) {
             System.out.print("vertex " + String.format("%02d", i) + ": ");
-            for (int j = 0; j < graph[i].getSize(); j++)
+            for (int j = 0; j < graph[i].size(); j++)
                 System.out.print(String.format("%02d", graph[i].get(j)) + " ");
             System.out.println();
         }
@@ -86,7 +88,19 @@ public class SparseGraph implements Graph {
     @Override
     public int degree(int v) {
         validateVertex(v);
-        return graph[v].getSize();
+        return graph[v].size();
+    }
+
+    @Override
+    public void removeEdge(int v, int w) {
+        validateVertex(v);
+        validateVertex(w);
+
+        if (graph[v].contains(w))
+            graph[v].remove(w);
+        if (graph[w].contains(v))
+            graph[w].remove(v);
+
     }
 
 }
