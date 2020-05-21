@@ -18,6 +18,7 @@ public class KruskalMST<Weight extends Number & Comparable> {
         for (int i = 0; i < graph.V(); i++) {
             for (Object item : graph.adj(i)) {
                 Edge<Weight> e = (Edge<Weight>) item;
+                // 避免重复加入边
                 if (e.v() <= e.w())
                     pq.add(e);
             }
@@ -29,12 +30,11 @@ public class KruskalMST<Weight extends Number & Comparable> {
             // 从最小堆中依次从小到大取出所有的边
             Edge<Weight> e = pq.extractMin();
             // 如果该边的两个端点是联通的, 说明加入这条边将产生环, 扔掉这条边
-            if (uf.isConnected(e.v(), e.w()))
-                continue;
-
             // 否则, 将这条边添加进最小生成树, 同时标记边的两个端点联通
-            mst.add(e);
-            uf.unionElements(e.v(), e.w());
+            if (!uf.isConnected(e.v(), e.w())) {
+                mst.add(e);
+                uf.unionElements(e.v(), e.w());
+            }
         }
 
         // 计算最小生成树的权值
@@ -61,6 +61,7 @@ public class KruskalMST<Weight extends Number & Comparable> {
 
         SparseWeightedGraph<Double> g = new SparseWeightedGraph<Double>(V, false);
         ReadWeightedGraph readGraph = new ReadWeightedGraph(g, filename);
+        g.show();
 
         // Test Kruskal
         System.out.println("Test Kruskal:");
