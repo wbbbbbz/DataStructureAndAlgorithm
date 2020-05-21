@@ -12,7 +12,8 @@ public class HamiltonPath {
     private boolean[] visited;
     private int[] from;
     private int start;
-    private int end;
+    private ArrayList<ArrayList<Integer>> paths;
+    private int pathCount;
 
     public HamiltonPath(Graph G, int start) {
         this.G = G;
@@ -20,7 +21,7 @@ public class HamiltonPath {
         this.start = start;
         this.visited = new boolean[G.V()];
         this.from = new int[G.V()];
-        this.end = -1;
+        this.paths = new ArrayList<>();
         dfs(start, start, G.V());
     }
 
@@ -32,37 +33,55 @@ public class HamiltonPath {
         left--;
         // // 这个时候汉密尔顿路径寻找到了
         if (left == 0) {
-            end = v;
+            ArrayList<Integer> res = new ArrayList<>();
+            int curr = v;
+            if (curr != -1) {
+                res.add(curr);
+                while (curr != start) {
+                    curr = from[curr];
+                    res.add(curr);
+                }
+                Collections.reverse(res);
+            }
+            paths.add(res);
+            pathCount++;
+            visited[v] = false;
             return true;
         }
+        boolean hasPath = false;
         for (Integer w : G.adj(v)) {
+            // System.out.println(w);
             if (!visited[w]) {
-                if (dfs(w, v, left)) {
-                    return true;
-                }
+                hasPath |= dfs(w, v, left);
+                // System.out.println(v + " " + w + " " + hasPath + " " + left);
             }
         }
         visited[v] = false;
-        return false;
+        return hasPath;
     }
 
-    public ArrayList<Integer> hamiltorPath() {
-        ArrayList<Integer> res = new ArrayList<>();
-        if (end != -1) {
-            res.add(end);
-            while (end != start) {
-                end = from[end];
-                res.add(end);
-            }
-            Collections.reverse(res);
-        }
-        return res;
+    // public ArrayList<Integer> hamiltorPath() {
+    // ArrayList<Integer> res = new ArrayList<>();
+    // int curr = end;
+    // if (curr != -1) {
+    // res.add(curr);
+    // while (curr != start) {
+    // curr = from[curr];
+    // res.add(curr);
+    // }
+    // Collections.reverse(res);
+    // }
+    // return res;
+    // }
+
+    public ArrayList<ArrayList<Integer>> hamiltorPaths() {
+        return paths;
     }
 
     public static void main(String[] args) {
 
-        Graph g = new AdjSet("testfiles\\testHamiltonPath1.txt");
-        HamiltonPath hamiltonPath = new HamiltonPath(g, 2);
-        System.out.println(hamiltonPath.hamiltorPath());
+        Graph g = new AdjSet("testfiles\\testHamiltonLoop2.txt");
+        HamiltonPath hamiltonPath = new HamiltonPath(g, 0);
+        System.out.println(hamiltonPath.hamiltorPaths());
     }
 }

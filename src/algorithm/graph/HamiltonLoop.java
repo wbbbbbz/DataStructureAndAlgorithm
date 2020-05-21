@@ -9,21 +9,21 @@ import datastructure.Graph;
 public class HamiltonLoop {
 
     private Graph G;
-    private boolean[] visited;
     private int[] from;
     private int end;
 
     public HamiltonLoop(Graph G) {
         this.G = G;
-        this.visited = new boolean[G.V()];
         this.from = new int[G.V()];
         this.end = -1;
-        dfs(0, 0, G.V());
+        int visited = 0;
+        dfs(visited, 0, 0, G.V());
     }
 
     // 深度优先递归
-    private boolean dfs(int v, int s, int left) {
-        visited[v] = true;
+    private boolean dfs(int visited, int v, int s, int left) {
+        visited += (1 << v);
+        // visited[v] = true;
         from[v] = s;
         left--;
         // // 这个时候汉密尔顿回路寻找到了
@@ -32,8 +32,8 @@ public class HamiltonLoop {
             return true;
         }
         for (Integer w : G.adj(v)) {
-            if (!visited[w]) {
-                if (dfs(w, v, left)) {
+            if ((visited & (1 << w)) == 0) {
+                if (dfs(visited, w, v, left)) {
                     return true;
                 }
             }
@@ -42,7 +42,8 @@ public class HamiltonLoop {
             // return true;
             // }
         }
-        visited[v] = false;
+        visited -= (1 << v);
+        // visited[v] = false;
         return false;
     }
 
