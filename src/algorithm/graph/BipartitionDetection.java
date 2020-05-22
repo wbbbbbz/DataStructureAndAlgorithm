@@ -88,6 +88,10 @@ public class BipartitionDetection {
         return isBipartite;
     }
 
+    public boolean[] colors() {
+        return colors;
+    }
+
     public static void main(String[] args) {
         String lineSeperator = "--------------------------------------------------------------------------------------";
 

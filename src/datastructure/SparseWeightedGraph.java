@@ -97,6 +97,11 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
         edges++;
     }
 
+    // 传入v和w两个顶点
+    public void addEdge(int v, int w, Weight weight) {
+        this.addEdge(new Edge(v, w, weight));
+    }
+
     public boolean hasEdge(int v, int w) {
         boundsCheck(v);
         boundsCheck(w);
