@@ -56,3 +56,4 @@
 - [第 13 章 有向图算法](notes/graph/Chapter13.md)
 - [第 14 章 网络流模型和最大流问题](notes/graph/Chapter14.md)
 - [第 15 章 匹配算法](notes/graph/Chapter15.md)
+- [第 16 章 更广阔的图论算法世界](notes/graph/Chapter16.md)
