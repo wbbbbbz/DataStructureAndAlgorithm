@@ -212,4 +212,23 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
 
     }
 
+    public Weight getWeight(int v, int w) {
+        validateVertex(v);
+        validateVertex(w);
+        for (Edge<Weight> edge : graph[v]) {
+            if (edge.other(v) == w)
+                return edge.wt();
+        }
+        return null;
+    }
+
+    public void setWeight(int v, int w, Weight weight) {
+        validateVertex(v);
+        validateVertex(w);
+        for (Edge<Weight> edge : graph[v]) {
+            if (edge.other(v) == w)
+                edge.setWeight(weight);
+        }
+    }
+
 }

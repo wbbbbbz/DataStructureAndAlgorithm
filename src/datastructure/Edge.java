@@ -35,6 +35,11 @@ public class Edge<Weight extends Number & Comparable> implements Comparable<Edge
         return x == a ? b : a;
     }
 
+    // 更改权重
+    public void setWeight(Weight weight) {
+        this.weight = weight;
+    }
+
     // 输出边的信息
     public String toString() {
         return "" + a + "-" + b + ": " + weight;
