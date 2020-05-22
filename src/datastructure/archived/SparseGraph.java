@@ -1,9 +1,9 @@
-package datastructure;
+package datastructure.archived;
 
+import datastructure.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.TreeSet;
 
 // 不考虑自环边
 // 允许平行边
@@ -16,15 +16,15 @@ public class SparseGraph implements Graph {
     // true: 有向图
     private boolean isDirected;
     // 邻接矩阵: true代表连接
-    private TreeSet<Integer>[] graph;
+    private LinkedList[] graph;
 
     public SparseGraph(int vertexes, boolean isDirected) {
         this.vertexes = vertexes;
         this.edges = 0;
         this.isDirected = isDirected;
-        this.graph = new TreeSet[vertexes];
+        this.graph = new LinkedList[vertexes];
         for (int i = 0; i < vertexes; i++)
-            graph[i] = new TreeSet<Integer>();
+            graph[i] = new LinkedList<Integer>();
     }
 
     public SparseGraph(int vertexes) {
@@ -42,9 +42,9 @@ public class SparseGraph implements Graph {
             vertexes = scanner.nextInt();
             if (vertexes < 0)
                 throw new IllegalArgumentException("V must be non-negative!");
-            graph = new TreeSet[vertexes];
+            graph = new LinkedList[vertexes];
             for (int i = 0; i < vertexes; i++)
-                graph[i] = new TreeSet<>();
+                graph[i] = new LinkedList<>();
 
             edges = scanner.nextInt();
             if (edges < 0)
@@ -60,9 +60,9 @@ public class SparseGraph implements Graph {
                     throw new IllegalArgumentException("Self Loop is Detected");
                 if (graph[v].contains(w))
                     throw new IllegalArgumentException("Parallel Edge is Detected");
-                graph[v].add(w);
+                graph[v].addLast(w);
                 if (!isDirected)
-                    graph[w].add(v);
+                    graph[w].addLast(v);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,10 +84,10 @@ public class SparseGraph implements Graph {
         validateVertex(w);
 
         // 允许平行边
-        graph[v].add(w);
+        graph[v].addLast(w);
         // 无向图的话，两边都要修改
         if (v != w && !isDirected)
-            graph[w].add(v);
+            graph[w].addLast(v);
 
         edges++;
     }
@@ -129,7 +129,7 @@ public class SparseGraph implements Graph {
     @Override
     public int degree(int v) {
         validateVertex(v);
-        return graph[v].size();
+        return graph[v].getSize();
     }
 
     @Override
@@ -137,9 +137,12 @@ public class SparseGraph implements Graph {
         validateVertex(v);
         validateVertex(w);
 
-        if (graph[v].remove(w))
+        if (graph[v].contains(w)) {
+            graph[v].removeElement(w);
             edges--;
-        if (!isDirected && graph[w].remove(v)) {
+        }
+        if (!isDirected && graph[w].contains(v)) {
+            graph[w].removeElement(v);
             edges--;
         }
 
@@ -157,8 +160,8 @@ public class SparseGraph implements Graph {
         sb.append(String.format("V = %d, E = %d, directed = %b\n", vertexes, edges, isDirected));
         for (int i = 0; i < vertexes; i++) {
             sb.append("vertex " + String.format("%2d", i) + ": ");
-            for (int j : adj(i))
-                sb.append(String.format("%2d", j) + " ");
+            for (int j = 0; j < graph[i].getSize(); j++)
+                sb.append(String.format("%2d", graph[i].get(j)) + " ");
             sb.append("\n");
         }
         return sb.toString();
@@ -167,20 +170,13 @@ public class SparseGraph implements Graph {
     @Override
     public Object clone() {
 
+        // TODO
         try {
-            SparseGraph cloned = (SparseGraph) super.clone();
-            cloned.graph = new TreeSet[vertexes];
-            for (int i = 0; i < vertexes; i++) {
-                cloned.graph[i] = new TreeSet<Integer>();
-                for (int v : this.adj(i)) {
-                    cloned.graph[i].add(v);
-                }
-            }
-            return cloned;
+            return super.clone();
         } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         return null;
 
     }

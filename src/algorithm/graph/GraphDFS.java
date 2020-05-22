@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import datastructure.AdjSet;
 import datastructure.Graph;
+import datastructure.SparseGraph;
 
 public class GraphDFS {
 
@@ -49,8 +50,13 @@ public class GraphDFS {
 
     public static void main(String[] args) {
 
-        Graph g = new AdjSet("testfiles\\testG.txt");
-        GraphDFS graphDFS = new GraphDFS(g);
+        Graph g1 = new AdjSet("testfiles\\testDirectedGraph1.txt");
+        GraphDFS graphDFS = new GraphDFS(g1);
+        System.out.println(graphDFS.pre());
+        System.out.println(graphDFS.post());
+
+        Graph g2 = new SparseGraph("testfiles\\testDirectedGraph1.txt", true);
+        graphDFS = new GraphDFS(g2);
         System.out.println(graphDFS.pre());
         System.out.println(graphDFS.post());
     }

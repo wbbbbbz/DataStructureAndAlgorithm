@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import datastructure.AdjSet;
 import datastructure.Graph;
+import datastructure.SparseGraph;
 
 public class GraphBFS {
 
@@ -49,8 +50,13 @@ public class GraphBFS {
 
     public static void main(String[] args) {
 
-        Graph g = new AdjSet("testfiles\\testG1.txt");
+        Graph g = new AdjSet("testfiles\\testDirectedGraph1.txt");
         GraphBFS graphBFS = new GraphBFS(g);
+        System.out.print("BFS Order: ");
+        System.out.println(graphBFS.order());
+
+        Graph g2 = new SparseGraph("testfiles\\testDirectedGraph1.txt", true);
+        graphBFS = new GraphBFS(g2);
         System.out.print("BFS Order: ");
         System.out.println(graphBFS.order());
     }

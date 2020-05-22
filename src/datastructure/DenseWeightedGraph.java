@@ -1,5 +1,6 @@
 package datastructure;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class DenseWeightedGraph<Weight extends Number & Comparable> implements WeightedGraph {
@@ -94,5 +95,46 @@ public class DenseWeightedGraph<Weight extends Number & Comparable> implements W
     public void validateVertex(int v) {
         if (v < 0 || v >= vertexes)
             throw new IllegalArgumentException("vertex " + v + " is invalid");
+    }
+
+    @Override
+    public int degree(int v) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void removeEdge(int v, int w) {
+        validateVertex(v);
+        validateVertex(w);
+
+        graph[v][w] = null;
+        edges--;
+
+        if (!isDirected) {
+
+            graph[w][v] = null;
+            edges--;
+        }
+
+    }
+
+    @Override
+    public Object clone() {
+
+        // TODO
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+    @Override
+    public boolean isDirected() {
+        return this.isDirected;
     }
 }

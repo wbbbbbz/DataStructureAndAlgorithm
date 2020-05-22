@@ -1,10 +1,10 @@
-package datastructure;
+package datastructure.archived;
 
+import datastructure.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.TreeSet;
 
 public class SparseWeightedGraph<Weight extends Number & Comparable> implements WeightedGraph {
 
@@ -15,15 +15,15 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
     // true: 有向图
     private boolean isDirected;
     // 邻接矩阵: true代表连接
-    private TreeSet<Edge<Weight>>[] graph;
+    private LinkedList<Edge<Weight>>[] graph;
 
     public SparseWeightedGraph(int vertexes, boolean isDirected) {
         this.vertexes = vertexes;
         this.edges = 0;
         this.isDirected = isDirected;
-        this.graph = new TreeSet[vertexes];
+        this.graph = new LinkedList[vertexes];
         for (int i = 0; i < vertexes; i++)
-            graph[i] = new TreeSet<Edge<Weight>>();
+            graph[i] = new LinkedList<Edge<Weight>>();
     }
 
     public SparseWeightedGraph(int vertexes) {
@@ -41,9 +41,9 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
             vertexes = scanner.nextInt();
             if (vertexes < 0)
                 throw new IllegalArgumentException("V must be non-negative!");
-            graph = new TreeSet[vertexes];
+            graph = new LinkedList[vertexes];
             for (int i = 0; i < vertexes; i++)
-                graph[i] = new TreeSet<>();
+                graph[i] = new LinkedList<>();
 
             edges = scanner.nextInt();
             if (edges < 0)
@@ -65,9 +65,9 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
                     throw new IllegalArgumentException("Self Loop is Detected");
                 // if (graph[v].contains(w))
                 // throw new IllegalArgumentException("Parallel Edge is Detected");
-                graph[v].add(new Edge(v, w, weight));
+                graph[v].addFirst(new Edge(v, w, weight));
                 if (!isDirected)
-                    graph[w].add(new Edge(w, v, weight));
+                    graph[w].addFirst(new Edge(w, v, weight));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,10 +89,10 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
         boundsCheck(e.w());
 
         // 允许平行边
-        graph[e.v()].add(new Edge(e));
+        graph[e.v()].addFirst(new Edge(e));
         // 无向图的话，两边都要修改
         if (e.v() != e.w() && !isDirected)
-            graph[e.w()].add(new Edge(e.w(), e.v(), e.wt()));
+            graph[e.w()].addFirst(new Edge(e.w(), e.v(), e.wt()));
 
         edges++;
     }
@@ -116,7 +116,7 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
     // 由于java使用引用机制，返回一个Vector不会带来额外开销,
     public Iterable<Edge<Weight>> adj(int v) {
         boundsCheck(v);
-        return graph[v];
+        return graph[v].iterable();
     }
 
     @Override
@@ -148,7 +148,7 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
     @Override
     public int degree(int v) {
         validateVertex(v);
-        return graph[v].size();
+        return graph[v].getSize();
     }
 
     @Override
@@ -165,7 +165,7 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
         }
 
         for (Edge<Weight> edge : removeEdges) {
-            graph[v].remove(edge);
+            graph[v].removeElement(edge);
             edges--;
         }
 
@@ -179,7 +179,7 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
             }
 
             for (Edge<Weight> edge : removeEdges) {
-                graph[w].remove(edge);
+                graph[w].removeElement(edge);
                 edges--;
             }
         }
@@ -187,29 +187,22 @@ public class SparseWeightedGraph<Weight extends Number & Comparable> implements 
     }
 
     @Override
-    public boolean isDirected() {
-        return this.isDirected;
+    public Object clone() {
+
+        // TODO
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     @Override
-    public Object clone() {
-
-        try {
-            SparseWeightedGraph cloned = (SparseWeightedGraph) super.clone();
-            cloned.graph = new TreeSet[vertexes];
-            for (int i = 0; i < vertexes; i++) {
-                cloned.graph[i] = new TreeSet<Edge<Weight>>();
-                for (Edge<Weight> edge : this.adj(i)) {
-                    cloned.graph[i].add(edge.clone());
-                }
-            }
-            return cloned;
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-
+    public boolean isDirected() {
+        return this.isDirected;
     }
 
 }

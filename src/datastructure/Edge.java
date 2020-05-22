@@ -40,9 +40,20 @@ public class Edge<Weight extends Number & Comparable> implements Comparable<Edge
         return "" + a + "-" + b + ": " + weight;
     }
 
-    // 边之间的比较
+    // 比较两条边
     public int compareTo(Edge that) {
-        return weight.compareTo(that.weight);
+        if (this.a == that.a && this.b == that.b) {
+            return this.wt().compareTo(that.wt());
+        } else if (this.a == that.a) {
+            return this.b - that.b;
+        } else {
+            return this.a - that.a;
+        }
+    }
+
+    @Override
+    public Object clone() {
+        return new Edge(a, b, weight);
     }
 
 }

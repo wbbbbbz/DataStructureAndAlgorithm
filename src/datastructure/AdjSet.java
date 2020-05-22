@@ -140,4 +140,9 @@ public class AdjSet implements Graph, Cloneable {
         return null;
 
     }
+
+    @Override
+    public boolean isDirected() {
+        return false;
+    }
 }

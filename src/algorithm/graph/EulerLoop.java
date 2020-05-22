@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import datastructure.AdjSet;
+import datastructure.Graph;
+import datastructure.SparseGraph;
 
 public class EulerLoop {
 
-    private AdjSet G;
+    private Graph G;
     // private boolean[] visited;
     private boolean hasEulerLoop;
     private ArrayList<Integer> eulerLoop;
 
-    public EulerLoop(AdjSet G) {
+    public EulerLoop(Graph G) {
         this.G = G;
         // this.visited = new boolean[G.V()];
         Components components = new Components(G);
@@ -28,7 +30,7 @@ public class EulerLoop {
 
         if (hasEulerLoop) {
             Stack<Integer> curPath = new Stack<Integer>();
-            AdjSet g = (AdjSet) G.clone();
+            Graph g = (Graph) G.clone();
             int curv = 0;
             // 1. 如果还有边(edges[i][j] == true)，那么就压栈
             // 2. 如果没有边，就弹栈，记录结果
@@ -82,8 +84,13 @@ public class EulerLoop {
 
     public static void main(String[] args) {
 
-        AdjSet g = new AdjSet("testfiles\\testEulerLoop2.txt");
+        Graph g = new AdjSet("testfiles\\testEulerLoop2.txt");
         EulerLoop eulerLoop = new EulerLoop(g);
+        System.out.println(eulerLoop.hasEulerLoop());
+        System.out.println(eulerLoop.eulerLoop());
+
+        Graph g2 = new SparseGraph("testfiles\\testEulerLoop2.txt");
+        eulerLoop = new EulerLoop(g2);
         System.out.println(eulerLoop.hasEulerLoop());
         System.out.println(eulerLoop.eulerLoop());
     }

@@ -12,8 +12,8 @@ public class BellmanFordTest {
     // 测试我们的Bellman-Ford最短路径算法
     private static void testBellmanFord() {
 
-        // String filename = "testfiles\\testWG6.txt";
-        String filename = "testfiles\\testWG7.txt";
+        String filename = "testfiles\\testWG6.txt";
+        // String filename = "testfiles\\testWG7.txt";
         int V = 5;
 
         SparseWeightedGraph<Integer> g = new SparseWeightedGraph<Integer>(V, true);

@@ -115,4 +115,21 @@ public class DenseGraph implements Graph {
 
     }
 
+    @Override
+    public boolean isDirected() {
+        return isDirected;
+    }
+
+    @Override
+    public Object clone() {
+        // TODO
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

@@ -3,7 +3,6 @@ package algorithm.graph;
 import java.util.Vector;
 
 import datastructure.Edge;
-import datastructure.IndexMinHeap;
 import datastructure.ReadWeightedGraph;
 import datastructure.SparseWeightedGraph;
 import datastructure.WeightedGraph;
@@ -12,7 +11,6 @@ import datastructure.WeightedGraph;
 public class PrimMST2<Weight extends Number & Comparable> {
 
     private WeightedGraph G; // 图的引用
-    private IndexMinHeap<Weight> ipq; // 最小索引堆, 算法辅助数据结构
     private Edge<Weight>[] edgeTo; // 访问的点所对应的边, 算法辅助数据结构。存储的是最短的横切边。
     private boolean[] marked; // 标记数组, 在算法运行过程中标记节点i是否被访问
     private Vector<Edge<Weight>> mst; // 最小生成树所包含的所有边
@@ -23,7 +21,6 @@ public class PrimMST2<Weight extends Number & Comparable> {
 
         G = graph;
         assert (graph.E() >= 1);
-        ipq = new IndexMinHeap<Weight>(graph.V());
 
         // 算法初始化
         marked = new boolean[G.V()];

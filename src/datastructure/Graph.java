@@ -1,6 +1,6 @@
 package datastructure;
 
-public interface Graph {
+public interface Graph extends Cloneable {
 
     public int V();
 
@@ -19,5 +19,9 @@ public interface Graph {
     public void validateVertex(int v);
 
     public void removeEdge(int v, int w);
+
+    public boolean isDirected();
+
+    public Object clone();
 
 }
