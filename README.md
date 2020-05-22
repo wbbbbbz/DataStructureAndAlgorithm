@@ -52,3 +52,4 @@
 - [第 9 章 哈密尔顿回路和状态压缩](notes/graph/Chapter9.md)
 - [第 10 章 欧拉回路与欧拉路径](notes/graph/Chapter10.md)
 - [第 11 章 最小生成树](notes/graph/Chapter11.md)
+- [第 12 章 最短路径算法](notes/graph/Chapter12.md)

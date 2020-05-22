@@ -13,4 +13,6 @@ public interface WeightedGraph<Weight extends Number & Comparable> {
 
     public Iterable<Edge<Weight>> adj(int v);
 
+    public void validateVertex(int v);
+
 }

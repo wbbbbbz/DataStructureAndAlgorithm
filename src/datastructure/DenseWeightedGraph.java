@@ -90,4 +90,9 @@ public class DenseWeightedGraph<Weight extends Number & Comparable> implements W
         }
 
     }
+
+    public void validateVertex(int v) {
+        if (v < 0 || v >= vertexes)
+            throw new IllegalArgumentException("vertex " + v + " is invalid");
+    }
 }
