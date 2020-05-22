@@ -17,12 +17,16 @@ public class SparseGraph implements Graph {
     private boolean isDirected;
     // 邻接矩阵: true代表连接
     private TreeSet<Integer>[] graph;
+    // 保存每一个点的入度和出度
+    private int[] indegrees, outdegrees;
 
     public SparseGraph(int vertexes, boolean isDirected) {
         this.vertexes = vertexes;
         this.edges = 0;
         this.isDirected = isDirected;
         this.graph = new TreeSet[vertexes];
+        indegrees = new int[vertexes];
+        outdegrees = new int[vertexes];
         for (int i = 0; i < vertexes; i++)
             graph[i] = new TreeSet<Integer>();
     }
@@ -46,6 +50,9 @@ public class SparseGraph implements Graph {
             for (int i = 0; i < vertexes; i++)
                 graph[i] = new TreeSet<>();
 
+            indegrees = new int[vertexes];
+            outdegrees = new int[vertexes];
+
             edges = scanner.nextInt();
             if (edges < 0)
                 throw new IllegalArgumentException("E must be non-negative!");
@@ -61,8 +68,13 @@ public class SparseGraph implements Graph {
                 if (graph[v].contains(w))
                     throw new IllegalArgumentException("Parallel Edge is Detected");
                 graph[v].add(w);
-                if (!isDirected)
+                outdegrees[v]++;
+                indegrees[w]++;
+                if (!isDirected) {
                     graph[w].add(v);
+                    outdegrees[w]++;
+                    indegrees[v]++;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,10 +96,15 @@ public class SparseGraph implements Graph {
         validateVertex(w);
 
         // 允许平行边
-        graph[v].add(w);
+        if (graph[v].add(w)) {
+            outdegrees[v]++;
+            indegrees[w]++;
+        }
         // 无向图的话，两边都要修改
-        if (v != w && !isDirected)
-            graph[w].add(v);
+        if (v != w && !isDirected && graph[w].add(v)) {
+            outdegrees[w]++;
+            indegrees[v]++;
+        }
 
         edges++;
     }
@@ -128,8 +145,10 @@ public class SparseGraph implements Graph {
 
     @Override
     public int degree(int v) {
+        if (isDirected)
+            throw new RuntimeException("degree only works in undirected graph.");
         validateVertex(v);
-        return graph[v].size();
+        return outdegrees[v];
     }
 
     @Override
@@ -137,10 +156,14 @@ public class SparseGraph implements Graph {
         validateVertex(v);
         validateVertex(w);
 
-        if (graph[v].remove(w))
+        if (graph[v].remove(w)) {
+            outdegrees[v]--;
+            indegrees[w]--;
             edges--;
+        }
         if (!isDirected && graph[w].remove(v)) {
-            edges--;
+            outdegrees[w]--;
+            indegrees[v]--;
         }
 
     }
@@ -185,9 +208,41 @@ public class SparseGraph implements Graph {
 
     }
 
+    @Override
+    public Graph reverse() {
+
+        SparseGraph cloned = new SparseGraph(this.vertexes, this.isDirected);
+        for (int v = 0; v < vertexes; v++) {
+            for (int w : this.adj(v)) {
+                cloned.addEdge(w, v);
+            }
+        }
+        return cloned;
+
+    }
+
+    @Override
+    public int indegree(int v) {
+        if (!isDirected)
+            return degree(v);
+        validateVertex(v);
+        return indegrees[v];
+    }
+
+    @Override
+    public int outdegree(int v) {
+        if (!isDirected)
+            return degree(v);
+        validateVertex(v);
+        return outdegrees[v];
+    }
+
     public static void main(String[] args) {
-        SparseGraph sg = new SparseGraph("testfiles\\testG1.txt", true);
+        SparseGraph sg = new SparseGraph("testfiles\\testG4.txt", true);
         System.out.println(sg);
+
+        for (int v = 0; v < sg.V(); v++)
+            System.out.println("vertex " + v + ": " + sg.indegree(v) + " " + sg.outdegree(v));
     }
 
 }

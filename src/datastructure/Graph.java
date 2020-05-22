@@ -24,4 +24,16 @@ public interface Graph extends Cloneable {
 
     public Object clone();
 
+    public default int indegree(int v) {
+        return degree(v);
+    };
+
+    public default int outdegree(int v) {
+        return degree(v);
+    };
+
+    public default Graph reverse() {
+        throw new RuntimeException();
+    };
+
 }

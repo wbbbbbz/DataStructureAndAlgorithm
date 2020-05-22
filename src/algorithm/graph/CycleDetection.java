@@ -1,9 +1,10 @@
 package algorithm.graph;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
-import datastructure.AdjSet;
 import datastructure.Graph;
+import datastructure.SparseGraph;
 
 // 深度遍历方式求是否存在环
 public class CycleDetection {
@@ -12,6 +13,7 @@ public class CycleDetection {
     private boolean[] visited; // 记录dfs的过程中节点是否被访问
     private int[] from; // 保存了所有边之前的顶点的信息
     private boolean hasCycled; // 记录图中是否有环
+    private boolean[] onPath; // 记录搜索路径，用于有向图的环检测
 
     // 图的深度优先遍历
     // 返回的是从v开始的节点是否存在环
@@ -69,16 +71,46 @@ public class CycleDetection {
             from[i] = -1;
         }
 
-        // 遍历图
-        for (int v = 0; v < G.V(); v++) {
-            if (!visited[v])
-                if (bfs(v, v)) {
-                    hasCycled = true;
-                    break;
-                }
-            ;
+        if (!G.isDirected()) {
+            // 遍历图
+            for (int v = 0; v < G.V(); v++) {
+                if (!visited[v])
+                    if (bfs(v, v)) {
+                        hasCycled = true;
+                        break;
+                    }
+            }
+        } else {
+            onPath = new boolean[G.V()];
+            for (int v = 0; v < G.V(); v++) {
+                if (!visited[v])
+                    if (dfsDirected(v, v)) {
+                        hasCycled = true;
+                        break;
+                    }
+            }
         }
 
+    }
+
+    // 图的深度优先遍历
+    // 返回的是从v开始的节点是否存在环
+    private boolean dfsDirected(int v, int parent) {
+        visited[v] = true;
+        from[v] = parent;
+        onPath[v] = true;
+        // 递归
+        for (Integer w : G.adj(v)) {
+            if (!visited[w]) {
+                from[w] = v;
+                if (dfsDirected(w, v))
+                    return true;
+            } else if (onPath[w]) {
+                return true;
+            }
+        }
+        onPath[v] = false;
+        return false;
     }
 
     // 返回图中是否包括环
@@ -89,8 +121,8 @@ public class CycleDetection {
     public static void main(String[] args) {
         String lineSeperator = "--------------------------------------------------------------------------------------";
 
-        String filename = "testfiles\\testG.txt";
-        Graph g = new AdjSet(filename);
+        String filename = "testfiles\\testDirectedGraph1.txt";
+        Graph g = new SparseGraph(filename, true);
         System.out.println(lineSeperator);
         g.show();
         System.out.println(lineSeperator);

@@ -23,4 +23,12 @@ public interface WeightedGraph<Weight extends Number & Comparable> extends Clone
 
     public Object clone();
 
+    public default int indegree(int v){
+        return degree(v);
+    };
+
+    public default int outdegree(int v){
+        return degree(v);
+    };
+
 }

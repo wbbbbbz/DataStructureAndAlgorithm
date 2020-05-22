@@ -1,9 +1,9 @@
 package algorithm.graph;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Stack;
 
-import datastructure.AdjSet;
 import datastructure.Graph;
 import datastructure.SparseGraph;
 
@@ -21,9 +21,16 @@ public class EulerLoop {
 
         hasEulerLoop = (components.count() == 1);
 
-        for (int v = 0; v < G.V(); v++) {
-            if (G.degree(v) % 2 == 1)
-                hasEulerLoop = false;
+        if (!G.isDirected()) {
+            for (int v = 0; v < G.V(); v++) {
+                if (G.degree(v) % 2 == 1)
+                    hasEulerLoop = false;
+            }
+        } else {
+            for (int v = 0; v < G.V(); v++) {
+                if (G.indegree(v) != G.outdegree(v))
+                    hasEulerLoop = false;
+            }
         }
 
         eulerLoop = new ArrayList<Integer>();
@@ -37,7 +44,7 @@ public class EulerLoop {
             // 3. 如果栈空，那么就结束
             curPath.push(curv);
             while (!curPath.isEmpty()) {
-                if (g.degree(curv) != 0) {
+                if (g.outdegree(curv) != 0) {
                     curPath.push(curv);
                     int w = g.adj(curv).iterator().next();
                     g.removeEdge(curv, w);
@@ -49,6 +56,10 @@ public class EulerLoop {
                 }
             }
         }
+
+        // 有向图的话点的先后顺序是重要的
+        if (G.isDirected())
+            Collections.reverse(eulerLoop);
 
     }
 
@@ -84,13 +95,8 @@ public class EulerLoop {
 
     public static void main(String[] args) {
 
-        Graph g = new AdjSet("testfiles\\testEulerLoop2.txt");
-        EulerLoop eulerLoop = new EulerLoop(g);
-        System.out.println(eulerLoop.hasEulerLoop());
-        System.out.println(eulerLoop.eulerLoop());
-
-        Graph g2 = new SparseGraph("testfiles\\testEulerLoop2.txt");
-        eulerLoop = new EulerLoop(g2);
+        Graph g2 = new SparseGraph("testfiles\\testEulerLoop3.txt", true);
+        EulerLoop eulerLoop = new EulerLoop(g2);
         System.out.println(eulerLoop.hasEulerLoop());
         System.out.println(eulerLoop.eulerLoop());
     }
